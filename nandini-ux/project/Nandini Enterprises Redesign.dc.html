@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/beyondclaim-design-system-019dd511-028f-7609-8828-21ea74c51a4a/design-system/tokens.css">
+  <script src="_ds/beyondclaim-design-system-019dd511-028f-7609-8828-21ea74c51a4a/_ds_bundle.js"></script>
+  <style>body{margin:0;background:#fff;font-family:var(--bc-font-sans);color:#111827}a{color:#111827;text-decoration:none}a:hover{color:#6b7280}input,textarea{font-family:inherit}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#fff;font-family:var(--bc-font-sans);color:#111827;font-size:15px;font-weight:500;line-height:1.5">
+
+  <!-- Top bar -->
+  <div style="border-bottom:1px solid #f3f4f6;background:#f9fafb">
+    <div style="max-width:1280px;margin:0 auto;padding:0 20px;height:38px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:13px;font-weight:500;color:#111827">
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <span style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>info@nandiniautomation.com</span>
+        <span style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>+91-40-23190131</span>
+      </div>
+      <span style="white-space:nowrap">Hyderabad · Pune · Serving clients worldwide</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header style="position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb">
+    <div style="max-width:1280px;margin:0 auto;padding:10px 20px 6px;display:flex;align-items:center;justify-content:space-between;gap:8px 24px;flex-wrap:wrap">
+      <a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;flex:none;order:0">
+        <span style="display:flex;align-items:center;gap:10px"><img src="assets/nandini-mark.svg" alt="" style="height:36px;width:auto;display:block"><span style="display:flex;flex-direction:column;line-height:1.1"><span style="font-weight:700;font-size:18px;letter-spacing:-.01em">Nandini Enterprises</span><span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280">Edge of changing future</span></span></span>
+      </a>
+      <nav style="display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-start;flex:1 1 100%;min-width:0;order:3;border-top:1px solid #f3f4f6;padding-top:6px;margin:0 -8px">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+          <button onClick="{{ n.go }}" style="border:0;background:{{ n.bg }};color:{{ n.color }};font:inherit;font-weight:600;font-size:15px;padding:8px 14px;border-radius:8px;cursor:pointer" style-hover="background:#f3f4f6;color:#111827">{{ n.label }}</button>
+        </sc-for>
+      </nav>
+      <button onClick="{{ goContact }}" style="flex:none;order:1;border:1px solid #3b82f6;background:#3b82f6;color:#fff;font:inherit;font-weight:700;font-size:15px;padding:0 20px;height:44px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:8px" style-hover="background:#2563eb">Request a quote</button>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+  <!-- ================= HOME ================= -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Home (bold)" style="position:relative;background:#111827;color:#fff;overflow:hidden;min-height:640px;display:flex;align-items:flex-end">
+      <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=2000&q=80&auto=format&fit=crop" alt="Process plant" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.95) 0%,rgba(17,24,39,.75) 45%,rgba(17,24,39,.2) 100%)"></div>
+      <div style="position:relative;width:100%;max-width:1280px;margin:0 auto;padding:96px 20px 64px;display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Automation · Instrumentation · Electrical</span></div>
+        <h1 style="margin:0;font-size:68px;line-height:1;font-weight:700;letter-spacing:-.03em;max-width:900px;text-wrap:pretty">Engineering that keeps plants running. In India and worldwide.</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:640px;text-wrap:pretty">Drives, PLC/SCADA, field instruments and MCC/PCC panels, designed, built and commissioned by one team since 2006. Channel partner for Yaskawa, Honeywell, Baumer and Yokogawa.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button onClick="{{ goProducts }}" style="border:1px solid #3b82f6;background:#3b82f6;color:#fff;font:inherit;font-weight:700;font-size:16px;padding:0 26px;height:54px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:10px" style-hover="background:#2563eb">Explore products <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
+          <button onClick="{{ goContact }}" style="border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:700;font-size:16px;padding:0 26px;height:54px;border-radius:8px;cursor:pointer" style-hover="background:rgba(255,255,255,.18)">Request a quote</button>
+        </div>
+      </div>
+    </section>
+    <section style="background:#fff;border-bottom:1px solid #e5e7eb">
+      <div style="max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <sc-for list="{{ boldStats }}" as="s" hint-placeholder-count="4">
+          <div style="padding:28px 24px 28px 0;display:flex;flex-direction:column;gap:6px;border-top:4px solid #3b82f6;margin-top:-4px"><span style="font-family:var(--bc-font-mono);font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em">{{ s.value }}</span><span style="font-size:15px;font-weight:600;color:#111827">{{ s.label }}</span></div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:80px 20px 0;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Range of products</span><h2 style="margin:0;font-size:44px;font-weight:700;line-height:1.05;letter-spacing:-.025em">Six product lines. One accountable supplier.</h2></div>
+        <button onClick="{{ goProducts }}" style="border:1px solid #111827;background:#fff;color:#111827;font:inherit;font-weight:700;font-size:15px;padding:0 22px;height:48px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:8px" style-hover="background:#111827;color:#fff">Full catalogue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+        <sc-for list="{{ boldProducts }}" as="p" hint-placeholder-count="6">
+          <a href="#" onClick="{{ goProducts }}" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:4/3;border-radius:12px;overflow:hidden;color:#fff;background:#111827">
+            <img src="{{ p.photo }}" alt="{{ p.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;transition:transform .4s">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,24,39,0) 30%,rgba(17,24,39,.92) 100%)"></div>
+            <div style="position:relative;padding:24px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:var(--bc-font-mono);font-size:13px;font-weight:600;color:#93c5fd">{{ p.num }}</span>
+              <span style="font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ p.name }}</span>
+              <span style="font-size:15px;font-weight:500;color:#fff;line-height:1.45">{{ p.desc }}</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:80px 20px 0">
+      <div style="background:#111827;color:#fff;border-radius:16px;padding:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#93c5fd">Channel partner</span>
+          <h2 style="margin:0;font-size:36px;font-weight:700;line-height:1.1;letter-spacing:-.02em">Authorised for the brands your plant already specifies.</h2>
+          <p style="margin:0;font-size:17px;font-weight:500;color:#fff;line-height:1.5">Genuine supply, factory-trained service engineers and warranty support for each principal.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          <sc-for list="{{ partnerLogos }}" as="p" hint-placeholder-count="4">
+            <div style="background:#fff;border-radius:8px;height:96px;padding:20px 28px;display:flex;align-items:center;justify-content:center"><img src="{{ p.src }}" alt="{{ p.name }}" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:80px 20px 0;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:760px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Industries</span><h2 style="margin:0;font-size:44px;font-weight:700;line-height:1.05;letter-spacing:-.025em">Thirteen sectors, one commissioning standard.</h2></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+        <sc-for list="{{ boldIndustries }}" as="i" hint-placeholder-count="5">
+          <a href="#" onClick="{{ goIndustries }}" style="position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;display:flex;align-items:flex-end;color:#fff;background:#111827">
+            <img src="{{ i.photo }}" alt="{{ i.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,24,39,0) 45%,rgba(17,24,39,.9) 100%)"></div>
+            <span style="position:relative;padding:20px;font-size:22px;font-weight:700;line-height:1.15">{{ i.name }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ industries }}" as="i" hint-placeholder-count="13"><span style="padding:10px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:15px;font-weight:600;background:#f9fafb">{{ i }}</span></sc-for>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:80px 20px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <sc-for list="{{ boldServices }}" as="s" hint-placeholder-count="3">
+        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+          <img src="{{ s.photo }}" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover">
+          <div style="padding:28px;display:flex;flex-direction:column;gap:12px;border-top:4px solid #3b82f6">
+            <span style="font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ s.name }}</span>
+            <span style="font-size:16px;font-weight:500;line-height:1.5">{{ s.desc }}</span>
+            <a href="#" onClick="{{ goServices }}" style="font-weight:700;color:#3b82f6;display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:15px">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:80px 20px 0">
+      <div style="background:#3b82f6;color:#fff;border-radius:16px;padding:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Proven on site</span>
+          <h2 style="margin:0;font-size:36px;font-weight:700;line-height:1.1;letter-spacing:-.02em">15 work-completion and performance certificates.</h2>
+          <p style="margin:0;font-size:17px;font-weight:500;line-height:1.5">Mahagenco · Vasavadatta Cement · S.E.C. Railway · Kolhapur Municipal Corporation · ARM Limited, Kenya · Yokogawa India</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end">
+          <button onClick="{{ goResources }}" style="border:1px solid #fff;background:#fff;color:#111827;font:inherit;font-weight:700;font-size:16px;padding:0 26px;height:54px;border-radius:8px;cursor:pointer">See references</button>
+          <button onClick="{{ goContact }}" style="border:1px solid #fff;background:transparent;color:#fff;font:inherit;font-weight:700;font-size:16px;padding:0 26px;height:54px;border-radius:8px;cursor:pointer" style-hover="background:rgba(255,255,255,.15)">Request a quote</button>
+        </div>
+      </div>
+    </section>
+    <div style="height:80px"></div>
+  </sc-if>
+
+  <!-- ================= PRODUCTS ================= -->
+  <sc-if value="{{ isProducts }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Products" style="position:relative;background:#111827;color:#fff;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=2000&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.96) 0%,rgba(17,24,39,.7) 55%,rgba(17,24,39,.25) 100%)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:88px 20px 72px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Range of products</span></div>
+        <h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:860px;text-wrap:pretty">Products</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:680px;text-wrap:pretty">Datasheets are available on each product page. For selection help, send the load, supply and environment details and we will size it for you.</p>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:64px 20px 80px;display:flex;flex-direction:column;gap:40px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:96px 1fr;gap:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:24px;box-shadow:0 1px 2px rgba(0,0,0,.05)">
+            <div style="width:96px;height:96px;border-radius:6px;background:#f9fafb;border:1px solid #f3f4f6;display:flex;align-items:center;justify-content:center;padding:8px"><img src="{{ p.img }}" alt="{{ p.name }}" style="max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply"></div>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+              <span style="font-weight:700;font-size:18px">{{ p.name }}</span>
+              <span style="color:#111827;font-weight:500">{{ p.desc }}</span>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ p.items }}" as="it" hint-placeholder-count="2">
+                  <span style="padding:4px 10px;border-radius:9999px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;background:#f9fafb;color:#6b7280;border:1px solid #e5e7eb">{{ it }}</span>
+                </sc-for>
+              </div>
+              <a href="#" onClick="{{ goContact }}" style="font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:4px">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:4px"><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">Catalogue</h2><span style="color:#6b7280">Selected items from the drives and field-instrument ranges.</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">
+          <sc-for list="{{ catalogue }}" as="c" hint-placeholder-count="12">
+            <a href="#" onClick="{{ goContact }}" style="display:flex;flex-direction:column;gap:10px;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fff;color:#111827" style-hover="border-color:#111827">
+              <div style="aspect-ratio:1;background:#f9fafb;border-radius:6px;display:flex;align-items:center;justify-content:center;padding:10px"><img src="{{ c.img }}" alt="{{ c.name }}" style="max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply"></div>
+              <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px;line-height:1.25">{{ c.name }}</span><span style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b7280">{{ c.cat }}</span></div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:8px;padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;background:#f9fafb">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Also available</span><span style="font-weight:600;font-size:16px">Low-volume contract manufacturing</span><span style="color:#6b7280">Material procurement, wiring, burn-in, testing and calibration. Fast delivery on small batches.</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Software</span><span style="font-weight:600;font-size:16px">HMI / SCADA</span><span style="color:#6b7280">Graphical data display, trends, alarm annunciation, historical records and remote monitoring over the internet.</span></div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ================= INDUSTRIES ================= -->
+  <sc-if value="{{ isIndustries }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Industries" style="position:relative;background:#111827;color:#fff;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=2000&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.96) 0%,rgba(17,24,39,.7) 55%,rgba(17,24,39,.25) 100%)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:88px 20px 72px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Industries</span></div>
+        <h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:860px;text-wrap:pretty">Industries we serve</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:680px;text-wrap:pretty">Thirteen sectors since 2006. Each entry links to the products and services most often specified in that sector.</p>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:64px 20px 80px;display:flex;flex-direction:column;gap:40px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+        <sc-for list="{{ industryPhotos }}" as="ph" hint-placeholder-count="4">
+          <figure style="margin:0;position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden"><img src="{{ ph.src }}" alt="{{ ph.label }}" style="width:100%;height:100%;object-fit:cover;display:block"><figcaption style="position:absolute;left:12px;bottom:12px;background:#fff;color:#111827;font-size:12px;font-weight:600;padding:4px 10px;border-radius:9999px">{{ ph.label }}</figcaption></figure>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:#e5e7eb;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
+        <sc-for list="{{ industryRows }}" as="i" hint-placeholder-count="13">
+          <a href="#" style="background:#fff;padding:24px;display:flex;flex-direction:column;gap:12px;color:#111827" style-hover="background:#f9fafb">
+            <span style="font-family:var(--bc-font-mono);font-size:12px;color:#6b7280">{{ i.num }}</span>
+            <span style="font-weight:700;font-size:18px">{{ i.name }}</span>
+            <span style="font-size:14px;color:#111827;font-weight:500;text-wrap:pretty">{{ i.focus }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ================= SERVICES ================= -->
+  <sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Services" style="position:relative;background:#111827;color:#fff;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=2000&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.96) 0%,rgba(17,24,39,.7) 55%,rgba(17,24,39,.25) 100%)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:88px 20px 72px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Services</span></div>
+        <h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:860px;text-wrap:pretty">Engineering, support and training</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:680px;text-wrap:pretty">The same team that designs the panel commissions it on site and repairs it afterwards.</p>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:64px 20px 80px;display:flex;flex-direction:column;gap:48px">
+      <sc-for list="{{ serviceGroups }}" as="g" hint-placeholder-count="3">
+        <div style="display:grid;grid-template-columns:minmax(200px,1fr) minmax(0,2fr);gap:32px;padding-top:32px;border-top:1px solid #e5e7eb">
+          <div style="display:flex;flex-direction:column;gap:8px"><img src="{{ g.img }}" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;margin-bottom:8px"><span style="font-family:var(--bc-font-mono);font-size:12px;color:#6b7280">{{ g.num }}</span><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">{{ g.name }}</h2><span style="color:#111827;font-weight:500">{{ g.desc }}</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+            <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="3">
+              <div style="border:1px solid #e5e7eb;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px;background:#fff">
+                <span style="font-weight:700;font-size:16px">{{ s.name }}</span>
+                <span style="font-size:14px;color:#111827;font-weight:500">{{ s.desc }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </sc-if>
+
+  <!-- ================= ABOUT ================= -->
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="About" style="position:relative;background:#111827;color:#fff;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=2000&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.96) 0%,rgba(17,24,39,.7) 55%,rgba(17,24,39,.25) 100%)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:88px 20px 72px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">About Nandini</span></div>
+        <h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:860px;text-wrap:pretty">Electrical, instrumentation and automation since 2006</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:680px;text-wrap:pretty">An ISO 9001:2008 and CPRI certified company, Nandini Enterprises is a channel partner for Yaskawa, Honeywell, Baumer and Yokogawa. Sales engineers and service engineers work from one roof in Hyderabad and Pune, covering design, manufacturing, erection, commissioning and installation.</p>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:64px 20px 80px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:8px">
+            <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Vision</span>
+            <p style="margin:0;color:#111827">To be the most trusted progressive channel partner and leading service provider for electrical, instrumentation and automation needs in major projects that empower the nation.</p>
+            <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Mission</span>
+            <p style="margin:0;color:#111827">To provide advanced, reliable electrical, instrumentation and control products with price, performance and service that meet and exceed expectations.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          <sc-for list="{{ aboutLinks }}" as="l" hint-placeholder-count="4">
+            <a href="#" style="border:1px solid #e5e7eb;border-radius:8px;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;background:#fff" style-hover="border-color:#111827">{{ l }} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+        <sc-for list="{{ banners }}" as="b" hint-placeholder-count="4">
+          <img src="{{ b }}" alt="" style="aspect-ratio:4/3;width:100%;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb">
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;padding-top:32px;border-top:1px solid #e5e7eb">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Our team</span><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">Leadership</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+          <sc-for list="{{ leaders }}" as="l" hint-placeholder-count="2">
+            <div style="border:1px solid #e5e7eb;border-radius:8px;padding:24px;display:grid;grid-template-columns:64px 1fr;gap:20px;background:#fff">
+              <div style="width:64px;height:64px;border-radius:9999px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:20px">{{ l.initials }}</div>
+              <div style="display:flex;flex-direction:column;gap:6px"><span style="font-weight:700;font-size:18px">{{ l.name }}</span><span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b7280">{{ l.role }}</span><span style="color:#111827;font-weight:500;text-wrap:pretty">{{ l.bio }}</span></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#e5e7eb;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
+          <sc-for list="{{ departments }}" as="d" hint-placeholder-count="8">
+            <div style="background:#fff;padding:16px;display:flex;flex-direction:column;gap:4px"><span style="font-family:var(--bc-font-mono);font-size:22px;font-weight:700;line-height:1.25">{{ d.count }}</span><span style="font-size:14px;color:#111827;font-weight:500">{{ d.name }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px;border-top:1px solid #e5e7eb">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Recognition</span><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">Awards and milestones</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+          <sc-for list="{{ awards }}" as="a" hint-placeholder-count="5">
+            <div style="border:1px solid #e5e7eb;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;background:#fff"><span style="font-family:var(--bc-font-mono);font-size:12px;color:#6b7280">{{ a.year }}</span><span style="font-weight:700;font-size:16px">{{ a.title }}</span><span style="font-size:14px;color:#111827;font-weight:500">{{ a.by }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px;border-top:1px solid #e5e7eb">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Life at Nandini</span><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">Awards, annual meets and celebrations</h2></div><span style="font-size:12px;color:#6b7280">Photos from the company gallery</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px">
+          <sc-for list="{{ life }}" as="p" hint-placeholder-count="6">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:8px"><img src="{{ p.src }}" alt="{{ p.label }}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;background:#f9fafb"><figcaption style="font-size:12px;color:#6b7280">{{ p.label }}</figcaption></figure>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ================= RESOURCES ================= -->
+  <sc-if value="{{ isResources }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Resources" style="position:relative;background:#111827;color:#fff;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1581093806997-124204d9fa9d?w=2000&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.96) 0%,rgba(17,24,39,.7) 55%,rgba(17,24,39,.25) 100%)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:88px 20px 72px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Resources</span></div>
+        <h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:860px;text-wrap:pretty">Certificates, customers and milestones</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:680px;text-wrap:pretty">Documents and references a procurement team asks for before placing an order, in India or overseas.</p>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:64px 20px 80px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+        <sc-for list="{{ resources }}" as="r" hint-placeholder-count="5">
+          <a href="#" style="border:1px solid #e5e7eb;border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:12px;background:#fff;color:#111827;box-shadow:0 1px 2px rgba(0,0,0,.05)" style-hover="border-color:#111827">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+            <span style="font-weight:700;font-size:18px">{{ r.name }}</span>
+            <span style="color:#111827;font-weight:500">{{ r.desc }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px;border-top:1px solid #e5e7eb">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Our customers</span><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">Plants and utilities we have supplied</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+          <sc-for list="{{ customerLogos }}" as="c" hint-placeholder-count="7">
+            <div style="border:1px solid #e5e7eb;border-radius:8px;background:#fff;padding:12px;display:flex;align-items:center;justify-content:center;min-height:96px"><img src="{{ c }}" alt="Customer logos" style="max-width:100%;max-height:120px;object-fit:contain"></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px;border-top:1px solid #e5e7eb">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Client testimonials</span><h2 style="margin:0;font-size:22px;font-weight:700;line-height:1.25">Work-completion and performance certificates</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+          <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="12">
+            <a href="{{ t.href }}" target="_blank" style="border:1px solid #e5e7eb;border-radius:8px;padding:16px;display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;background:#fff;color:#111827" style-hover="border-color:#111827">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m9 15 2 2 4-4"></path></svg>
+              <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:16px">{{ t.client }}</span><span style="font-size:14px;color:#111827;font-weight:500">{{ t.doc }}</span></div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:32px;border-top:1px solid #e5e7eb">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">Certifications and partners</span>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ badges }}" as="b" hint-placeholder-count="6">
+            <span style="padding:8px 14px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:500;background:#f9fafb">{{ b }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ================= CONTACT ================= -->
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Contact" style="position:relative;background:#111827;color:#fff;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=2000&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.96) 0%,rgba(17,24,39,.7) 55%,rgba(17,24,39,.25) 100%)"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:88px 20px 72px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:4px;background:#3b82f6;display:inline-block"></span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Contact</span></div>
+        <h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:860px;text-wrap:pretty">Request a quote</h1>
+        <p style="margin:0;font-size:20px;font-weight:500;line-height:1.45;color:#fff;max-width:680px;text-wrap:pretty">Reply within one working day, worldwide. Attach a spec or drawing if you have one. Export documentation and international shipping arranged on request.</p>
+      </div>
+    </section>
+    <section style="max-width:1280px;margin:0 auto;padding:64px 20px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ offices }}" as="o" hint-placeholder-count="2">
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-top:1px solid #f3f4f6">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:16px">{{ o.state }}</span><span style="color:#6b7280">{{ o.addr }}</span></div>
+            </div>
+          </sc-for>
+          <div style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-top:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <div style="display:flex;flex-direction:column;gap:2px;font-family:var(--bc-font-mono);font-size:14px"><span>+91-40-23190131</span><span style="color:#6b7280">info@nandiniautomation.com</span><span style="color:#6b7280;font-family:var(--bc-font-sans);font-size:12px">Mon–Sat, 09:00–18:00 IST (UTC+5:30)</span></div>
+          </div>
+        </div>
+      </div>
+      <form onSubmit="{{ submit }}" style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:32px;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:16px">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#dcfce7;color:#15803d;border-radius:8px;padding:12px 14px;font-weight:500;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Enquiry sent. We will reply within one working day.</div>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500">Name *<input required="{{ true }}" placeholder="Full name" style="width:100%;font-size:14px;color:#111827;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;min-height:48px;outline:none" style-focus="border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.08)"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500">Company *<input required="{{ true }}" placeholder="Company name" style="width:100%;font-size:14px;color:#111827;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;min-height:48px;outline:none" style-focus="border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.08)"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500">Phone *<input required="{{ true }}" type="tel" placeholder="+91" style="width:100%;font-size:14px;color:#111827;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;min-height:48px;outline:none" style-focus="border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.08)"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500">Email *<input required="{{ true }}" type="email" placeholder="you@company.com" style="width:100%;font-size:14px;color:#111827;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;min-height:48px;outline:none" style-focus="border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.08)"></label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:500">Requirement (Optional)<textarea rows="{{ 5 }}" placeholder="Products, quantities, site location, timeline" style="width:100%;font-size:14px;color:#111827;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;outline:none;resize:vertical" style-focus="border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.08)"></textarea></label>
+        <button type="submit" style="border:1px solid #111827;background:#111827;color:#fff;font:inherit;font-weight:600;font-size:14px;height:48px;border-radius:12px;cursor:pointer" style-hover="background:#1f2937">{{ submitLabel }}</button>
+      </form>
+    </section>
+  </sc-if>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="border-top:1px solid #e5e7eb;background:#f9fafb">
+    <div style="max-width:1280px;margin:0 auto;padding:48px 20px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:12px;grid-column:span 1">
+        <span style="display:flex;align-items:center;gap:12px"><img src="assets/nandini-mark.svg" alt="" style="height:36px;width:auto;display:block"><span style="font-weight:700;font-size:18px">Nandini Enterprises</span></span>
+        <span style="color:#111827;font-weight:500;font-size:14px;max-width:280px">Automation, instrumentation, embedded systems and software solutions. Established 2006. Supplying and commissioning in India and internationally.</span>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6">{{ c.title }}</span>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4"><a href="#" onClick="{{ c.go }}" style="font-size:15px;font-weight:500;color:#111827">{{ l }}</a></sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:16px 20px 32px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:#6b7280">
+      <span>© 2026 Nandini Enterprises. All rights reserved.</span>
+      <span style="font-family:var(--bc-font-mono)">Hyderabad 500 055 · Pune 411 026</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;products&quot;,&quot;industries&quot;,&quot;services&quot;,&quot;about&quot;,&quot;resources&quot;,&quot;contact&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Navigation&quot;}}">
+class Component extends DCLogic {
+  state = { page: null, sent: false, sending: false, concept: null, query: '' };
+  go(p) { return (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ page: p, sent: false }); window.scrollTo(0, 0); }; }
+  renderVals() {
+    const page = this.state.page ?? this.props.page ?? 'home';
+    const pages = [['home','Home'],['products','Products'],['industries','Industries'],['services','Services'],['about','About'],['resources','Resources'],['contact','Contact']];
+    const navItems = pages.filter(p => p[0] !== 'home').map(([id, label]) => ({
+      label, go: this.go(id),
+      bg: page === id ? '#eff6ff' : 'transparent',
+      color: '#111827'
+    }));
+    const U = 'https://nandiniautomation.com/wp-content/uploads/';
+    const products = [
+      { img: U+'2018/01/GA-700.png', name: 'AC drives & motion control', desc: 'Variable frequency drives, servo drives and motion controllers for pumps, fans, conveyors and machine axes.', items: ['AC drives', 'Servo drives'] },
+      { img: U+'2018/02/MP3000.png', name: 'Process control (PLC, SCADA & HMI)', desc: 'Programmable logic controllers with HMI and SCADA software for monitoring, trends and alarms.', items: ['PLC', 'SCADA', 'HMI'] },
+      { img: U+'2018/02/f1-1.png', name: 'Field instruments', desc: 'Pressure, flow, level and temperature transmitters for process lines.', items: ['Transmitters', 'Gauges'] },
+      { img: U+'2018/03/a500eb0801e37537d23559ecfff4ec66abb698c3.jpg', name: 'Sensors & transducers', desc: 'Proximity, photoelectric and load sensors with signal conditioning.', items: ['Proximity', 'Load cells'] },
+      { img: U+'2018/02/Sigma-7-servo-Motor.png', name: 'Robotics', desc: 'Industrial robot supply, integration and cell programming.', items: ['Integration', 'Programming'] },
+      { img: U+'2018/01/Regenerative-Brake-Unit-R1000.jpg', name: 'MCC / PCC / LT panels', desc: 'Motor control centres, power control centres and control relay panels, built and tested in-house.', items: ['MCC', 'PCC', 'Control relay'] },
+    ];
+    const industries = ['Oil & Gas','Pharmaceuticals','Power','Chemical','Water & Waste Water','Food & Beverages','Building Management','Automobile','Paper & Pulp','Solar','Railways','Cement','Infrastructure'];
+    const focus = [
+      'Offshore and onshore facilities, pipelines and terminals. Solutions that improve safety, reliable operation and plant efficiency.',
+      'Lean manufacturing for regulated production. Automation that supports best manufacturing practice and profitability.',
+      'Electric control systems for generation and distribution, from switchgear to protection panels.',
+      'Continuous and batch processes: robust control for continuous lines, flexible recipe control for batch plants.',
+      'Energy-efficient control for municipal and industrial water, reducing running costs across the plant life cycle.',
+      'Safe, high-quality production with ingredient management, efficiency gains and environmental compliance.',
+      'Computer-based control and monitoring of ventilation, lighting, power, fire and security systems.',
+      'Test and measurement instruments for increasingly complex vehicle electronics and production lines.',
+      'Drive and control systems for energy-efficient, globally sustainable paper plants.',
+      'Monitoring and control for large-scale solar generation.',
+      'Bestact relay technology and dyno test benches, with a record of reliability in rolling stock and signalling.',
+      'Kiln, mill and crusher drives, ESP and boiler applications, from quarry to dispatch.',
+      'Transport, water, sewage and electric systems: high-value, long-life control installations.'];
+    const industryRows = industries.map((name, i) => ({ name, focus: focus[i], num: String(i + 1).padStart(2, '0') }));
+    const serviceGroups = [
+      { num: '01', img: 'https://images.unsplash.com/photo-1581093806997-124204d9fa9d?w=1400&q=80&auto=format&fit=crop', name: 'Engineering', desc: 'Design through commissioning by one accountable team.', items: [
+        { name: 'Design engineering', desc: 'Panel drawings, load lists, control philosophy, I/O schedules.' },
+        { name: 'Erection, installation & commissioning', desc: 'E&I services and supervision: HV/MV, power and distribution, fire detection, lighting, earthing and lightning protection, field instrumentation, BMS, security, PLC/DCS/SCADA safety systems.' },
+        { name: 'Drives', desc: 'Selection, parameterisation and retrofits of AC and servo drives.' } ] },
+      { num: '02', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80&auto=format&fit=crop', name: 'Support', desc: 'Keep installed equipment running.', items: [
+        { name: 'In-house repair', desc: 'Board-level repair of drives, PLCs and HMIs at Hyderabad and Pune.' },
+        { name: 'On-site service', desc: 'Breakdown attendance and preventive maintenance contracts.' },
+        { name: 'Technical support', desc: 'Sales and service engineers with real-time product knowledge, reachable by phone or email.' },
+        { name: 'Elevator drives', desc: 'Dedicated Yaskawa VFD sales, service and maintenance for the elevator segment.' } ] },
+      { num: '03', img: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=1400&q=80&auto=format&fit=crop', name: 'Training', desc: 'Operator and maintenance training on your installed systems.', items: [
+        { name: 'PLC & SCADA', desc: 'Programming, troubleshooting and backup practice.' },
+        { name: 'Drives', desc: 'Parameter setting, fault diagnosis and safe replacement.' },
+        { name: 'Panel maintenance', desc: 'Inspection routines for MCC and PCC panels.' } ] },
+    ];
+    const servicesHome = [
+      { num: '01', name: 'Design engineering', desc: 'Drawings, load lists and control philosophy.' },
+      { num: '02', name: 'Installation & commissioning', desc: 'Site erection, loop checks and handover.' },
+      { num: '03', name: 'Repair & on-site service', desc: 'In-house board repair and breakdown attendance.' },
+      { num: '04', name: 'Training', desc: 'Operator and maintenance courses on installed systems.' },
+    ];
+    const goC = this.go('contact');
+    const catalogue = [
+        { name: 'GA 700', cat: 'AC drive', img: U+'2018/01/GA-700.png' },
+        { name: 'AC Drive A1000', cat: 'AC drive', img: U+'2018/01/AC-Drive-A1000-_1.jpg' },
+        { name: 'AC Drive J1000', cat: 'AC drive', img: U+'2018/01/AC-Drive-J1000.png' },
+        { name: 'AC Drive V1000', cat: 'AC drive', img: U+'2018/01/AC-Drive-V1000_1.jpg' },
+        { name: 'Matrix Regenerative U1000', cat: 'AC drive', img: U+'2018/01/u-1000.jpg' },
+        { name: 'Regenerative Brake Unit R1000', cat: 'AC drive', img: U+'2018/01/Regenerative-Brake-Unit-R1000.jpg' },
+        { name: 'Common DC Bus D1000', cat: 'AC drive', img: U+'2018/01/Common-DC-Bus-D1000.jpg' },
+        { name: 'A1000 HHP 400/595/690 V', cat: 'AC drive', img: U+'2018/01/A1000-HHP-–-High-Horse-Power-400v-595v-690v.png' },
+        { name: 'Sigma 7 servo pack', cat: 'Servo', img: U+'2018/02/servopack7.jpg' },
+        { name: 'Sigma 7 servo motor', cat: 'Servo', img: U+'2018/02/Sigma-7-servo-Motor.png' },
+        { name: 'Sigma 5 servo drive', cat: 'Servo', img: U+'2018/02/SGDV-R90A15A_Feedback_Option_angled_IMG_1992.jpg' },
+        { name: 'Sigma 5 servo / linear motor', cat: 'Servo', img: U+'2018/02/Sigma5_servo-Motor.png' },
+        { name: 'MP3000 controller', cat: 'Motion control', img: U+'2018/02/MP3000.png' },
+        { name: 'MP2000 controller', cat: 'Motion control', img: U+'2018/02/MP2000.png' },
+        { name: 'Pressure transmitters', cat: 'Field instrument', img: U+'2018/02/f1-1.png' },
+        { name: 'Flow meters', cat: 'Field instrument', img: U+'2018/03/9c082330201fa1eadc1cca04d4040b4e43b50f54-1.png' },
+        { name: 'Temperature transmitters', cat: 'Field instrument', img: U+'2018/03/7eb5e4da3d9404d1043f5bbe806666d8762d9c93-1.jpg' },
+        { name: 'Level meters', cat: 'Field instrument', img: U+'2018/03/c04bd1a456673d233bab2c52a831177c00e46cf3.jpg' },
+        { name: 'Field wireless', cat: 'Field instrument', img: U+'2018/03/a500eb0801e37537d23559ecfff4ec66abb698c3.jpg' },
+        { name: 'Device smart communicators', cat: 'Field instrument', img: U+'2018/03/tn_category_YHC5150x.png' } ];
+    const q = this.state.query.trim().toLowerCase();
+    const filteredCatalogue = q ? catalogue.filter(c => (c.name + ' ' + c.cat).toLowerCase().includes(q)) : catalogue;
+    const PH = id => 'https://images.unsplash.com/photo-' + id + '?w=1400&q=80&auto=format&fit=crop';
+    return {
+      boldStats: [{ value: '2006', label: 'Established, Hyderabad' }, { value: '13', label: 'Industries served' }, { value: '35+', label: 'Engineers and staff' }, { value: '15', label: 'Client certificates on file' }],
+      boldProducts: [
+        { num: '01', name: 'AC drives & motion control', desc: 'Yaskawa GA700, A1000, V1000, Sigma servo and MP controllers.', photo: PH('1581092160562-40aa08e78837') },
+        { num: '02', name: 'PLC, SCADA & HMI', desc: 'Control systems with trends, alarms and remote monitoring.', photo: PH('1581091226825-a6a2a5aee158') },
+        { num: '03', name: 'Field instruments', desc: 'Yokogawa pressure, flow, level and temperature transmitters.', photo: PH('1581093806997-124204d9fa9d') },
+        { num: '04', name: 'Sensors & transducers', desc: 'Baumer sensing and signal conditioning.', photo: PH('1518770660439-4636190af475') },
+        { num: '05', name: 'Robotics', desc: 'Robot supply, integration and cell programming.', photo: PH('1565043589221-1a6fd9ae45c7') },
+        { num: '06', name: 'MCC / PCC / LT panels', desc: 'Designed, built and tested in-house. CPRI certified.', photo: PH('1558618666-fcd25c85cd64') } ],
+      boldIndustries: [
+        { name: 'Power', photo: PH('1473341304170-971dccb5ac1e') }, { name: 'Cement', photo: PH('1541888946425-d81bb19240f5') },
+        { name: 'Pharmaceuticals', photo: PH('1532187863486-abf9dbad1b69') }, { name: 'Water', photo: PH('1504328345606-18bbc8c9d7d1') },
+        { name: 'Oil & gas', photo: PH('1513828583688-c52646db42da') } ],
+      boldServices: [
+        { name: 'Design & engineering', desc: 'Panel drawings, load lists, control philosophy and I/O schedules.', photo: PH('1581093806997-124204d9fa9d') },
+        { name: 'Installation & commissioning', desc: 'E&I site work from HV/MV distribution to PLC/DCS/SCADA safety systems.', photo: PH('1581092921461-eab62e97a780') },
+        { name: 'Repair, service & training', desc: 'In-house board repair, on-site service and operator training.', photo: PH('1581093588401-fbb62a02f120') } ],
+      query: this.state.query, setQuery: (e) => this.setState({ query: e.target.value }),
+      popular: ['GA700', 'A1000', 'Sigma-7', 'MP3000', 'EJA pressure transmitter'],
+      filteredCatalogue, catalogueCount: filteredCatalogue.length, catalogueHeading: q ? 'Results for "' + this.state.query + '"' : 'Full catalogue',
+      cases: [
+        { sector: 'Power', client: 'Mahagenco', scope: 'Drive and control work for Maharashtra State Power Generation Co.', proof: 'Work completion certificate', img: PH('1473341304170-971dccb5ac1e') },
+        { sector: 'Cement · Kenya', client: 'ARM Limited', scope: 'International project delivery: drives and panels for cement production in East Africa.', proof: 'Work completion certificate', img: PH('1541888946425-d81bb19240f5') },
+        { sector: 'Railways', client: 'S.E.C. Railway, Raipur', scope: 'Dyno drive test bench commissioning and maintenance.', proof: 'Divl. Electrical Engineer certificate', img: PH('1474487548417-781cb71495f3') },
+        { sector: 'Water', client: 'Kolhapur Municipal Corporation', scope: 'Pump drives and control for the city water supply division.', proof: 'Two work completion certificates', img: PH('1504328345606-18bbc8c9d7d1') } ],
+      isHome: page === 'home', isProducts: page === 'products', isIndustries: page === 'industries', isServices: page === 'services', isAbout: page === 'about', isResources: page === 'resources', isContact: page === 'contact',
+      goHome: this.go('home'), goProducts: this.go('products'), goIndustries: this.go('industries'), goServices: this.go('services'), goContact: goC,
+      navItems, products, industries, industryRows, serviceGroups, servicesHome,
+      stats: [{ value: '2006', label: 'Established' }, { value: '13', label: 'Industries served' }, { value: '35+', label: 'Engineers and staff' }, { value: 'IN · KE', label: 'Projects delivered in India and Kenya' }],
+      partners: ['Yaskawa', 'Honeywell', 'Baumer', 'Yokogawa'],
+      partnerLogos: [
+        { name: 'Yaskawa', src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Yaskawa_logo.svg?width=600' },
+        { name: 'Honeywell', src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Honeywell_logo.svg?width=600' },
+        { name: 'Baumer', src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baumer_Logo.svg?width=600' },
+        { name: 'Yokogawa', src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Yokogawa_logo.svg?width=600' } ],
+      banners: ['https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1400&q=80&auto=format&fit=crop', 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=1400&q=80&auto=format&fit=crop', 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1400&q=80&auto=format&fit=crop', 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&q=80&auto=format&fit=crop'],
+      industryPhotos: [
+        { src: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1400&q=80&auto=format&fit=crop', label: 'Power' },
+        { src: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1400&q=80&auto=format&fit=crop', label: 'Chemical & process' },
+        { src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1400&q=80&auto=format&fit=crop', label: 'Pharmaceuticals' },
+        { src: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1400&q=80&auto=format&fit=crop', label: 'Infrastructure' } ],
+      awards: [
+        { year: '2018', title: 'Outstanding Achievement Award for Business Excellence', by: 'International Achievers Conference' },
+        { year: '2017', title: 'Fastest Growing Indian Company Excellence Award', by: 'Indian Economic Development & Research Association' },
+        { year: '2011', title: 'Best Women Business Partner Award, Ms. Pratima Maruti Marlapalle', by: 'L&T' },
+        { year: '2011', title: 'Management Development Program', by: 'IIM Lucknow' },
+        { year: '2010', title: 'Best Innovation Award', by: 'L&T' } ],
+      resources: [
+        { name: 'Certificates', desc: 'ISO 9001:2008 and CPRI certificates, downloadable as PDF.' },
+        { name: 'Our customers', desc: 'Utilities, cement, agro, railways and municipal water customers, listed below.' },
+        { name: 'Client testimonials', desc: '15 work-completion and performance certificates, listed below.' },
+        { name: 'Achievements & milestones', desc: 'Awards and company milestones since 2006.' },
+        { name: 'Branding & promotions', desc: 'Exhibition and event participation.' } ],
+      leaders: [
+        { initials: 'MM', name: 'Maruti Marlapalle', role: 'Managing Partner', bio: 'B.Tech Instrumentation, PGDBA. Founded Nandini Enterprises in 2007 with a team of five and an L&T dealership; 15+ years in electrical, instrumentation and automation.' },
+        { initials: 'PM', name: 'Pratima Maruti Marlapalle', role: 'Partner', bio: 'Computer Science graduate. Partner since 2011, handling people, finance, stock and supplier relationships. L&T Successful Women Business Partner award; IIM Lucknow business management.' } ],
+      departments: [
+        { count: '7', name: 'Sales & support' }, { count: '5', name: 'Panel design & execution' }, { count: '2', name: 'Projects' }, { count: '8', name: 'Service & repair' },
+        { count: '2', name: 'Instrumentation (PLC, SCADA)' }, { count: '3', name: 'Accounts' }, { count: '2', name: 'Purchase & e-procurement' }, { count: '4', name: 'Stores & admin' } ],
+      life: [
+        { src: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/India20500020Best20MSME20Award.jpg', label: 'India 5000 Best MSME Award' },
+        { src: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/Annual20Meet.jpg', label: 'Annual meet' },
+        { src: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/Deligates20Visit.jpg', label: 'Delegates visit' },
+        { src: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/Memento20to20Business20Associates.jpg', label: 'Memento to business associates' },
+        { src: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/Nagababu-Employee20Award.jpg', label: 'Employee award' },
+        { src: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/Anniversary20Celebration.jpg', label: 'Anniversary celebration' } ],
+      customers: ['ARM Limited, Kenya', 'Mahagenco', 'Yokogawa India', 'Visaka Industries', 'Vasavadatta Cement', 'Kolhapur Municipal Corporation', 'South East Central Railway', 'DCS Limited'],
+      customerLogos: ['p3','p4','p1','p2','p11','p12','p5'].map(n => U + '2019/01/' + n + '.jpg'),
+      testimonials: [
+        ['Visaka Industries Limited', 'Yaskawa VFD performance certificate', 'yasakawa-VFDs-performance-certificate_Visaka-1 (1).jpg'],
+        ['Maharashtra State Power Generation Co. Ltd', 'Work completion certificate', '2.-Mahagenco-Work-completion-1.jpg'],
+        ['Yokogawa India Limited', 'Authorisation letter', 'Yokogawa-Authorization-Letter-new-1.jpg'],
+        ['Vasavadatta Cement', 'Work completion certificate', 'Vasavadatta-Cement-1.jpg'],
+        ['Kolhapur Municipal Corporation', 'City water supply division', 'Nandini_KMC1-1.jpg'],
+        ['S.E.C. Railway, Raipur', 'Dyno test bench, Divl. Electrical Engineer', 'raipur-test-bench-1.jpg'],
+        ['TPTY Traversers', 'Certificate', 'TPTY-Traversers-Certificate-1 (1).jpg'],
+        ['Vaishali Agro Soya Products', 'Work completion certificate', 'Vaishali-Agro-1.jpg'],
+        ['Narayan Agro Oils Pvt Ltd', 'Work completion, Udgir', 'Narayana-Agro-Udgir1-1.jpg'],
+        ['DCS Limited', 'Work completion certificate', 'DCS-Ltd-1.jpg'],
+        ['ARM Limited, Kenya', 'Work completion certificate', '20.-ARM-Kenya-1.jpg'],
+        ['Vishwa Engineering Excellence', 'PLC automation panel and harmonic filters', '17.-VISHWA-PLC-AUTOMATION-PANEL-1.jpg'],
+        ['Ganesh Agro Industries', 'Experience letter', '8.-GANESH-AGRO-EXPERANCE-LTR-1.jpg'],
+        ['Sanchalan Bhavan, Secunderabad', 'Electrical maintenance, RCCB/SCR', '5.-RCCB_SCR-1.jpg'],
+        ['Pune', 'Work completion certificate', '3.-PUNE-WORK-COMPLETION-1.jpg'] ].map(([client, doc, f]) => ({ client, doc, href: 'https://nandiniautomation.com/wp-content/uploads/photo-gallery/imported_from_media_libray//' + encodeURI(f) })),
+      badges: ['ISO 9001:2008', 'CPRI certified', 'Yaskawa channel partner', 'Honeywell', 'Baumer', 'Yokogawa'],
+      catalogue,
+      aboutLinks: ['Our team', 'Vision & mission', 'Quality assurance', 'Our principles'],
+      offices: [
+        { state: 'Telangana', addr: 'Plot No. 35, 1st Floor, Opp. SBI, Shapurnagar, Jeedimetla, Hyderabad 500 055' },
+        { state: 'Maharashtra', addr: 'J135, MIDC Bhosari, Pune 411 026' } ],
+      footerCols: [
+        { title: 'Products', go: this.go('products'), links: ['AC drives & motion control', 'PLC, SCADA & HMI', 'Field instruments', 'Sensors & transducers', 'Robotics', 'MCC / PCC / LT panels'] },
+        { title: 'Company', go: this.go('about'), links: ['About us', 'Vision & mission', 'Quality assurance', 'Awards'] },
+        { title: 'Resources', go: this.go('resources'), links: ['Certificates', 'Our customers', 'Client testimonials', 'Achievements & milestones'] },
+        { title: 'Contact', go: goC, links: ['Request a quote', 'Technical support', 'In-house repair', 'Training'] } ],
+      sent: this.state.sent, submitLabel: this.state.sending ? 'Sending…' : 'Send enquiry',
+      submit: (e) => { e.preventDefault(); this.setState({ sending: true }); setTimeout(() => { this.setState({ sending: false, sent: true }); e.target.reset && e.target.reset(); }, 700); }
+    };
+  }
+}
+</script>
+</body>
+</html>
