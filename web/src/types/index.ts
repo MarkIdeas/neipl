@@ -68,3 +68,12 @@ export interface GalleryItem {
   readonly img: string;
   readonly desc?: string;
 }
+
+export interface PlanStepItem {
+  readonly number: string;
+  readonly title: string;
+  readonly outcome: string;
+  readonly description: string;
+  readonly deliverable: string;
+}
+

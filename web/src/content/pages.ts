@@ -1,15 +1,63 @@
-import type { CertificateItem, Industry, ServiceItem } from "@/types";
+import type { CertificateItem, Industry, PlanStepItem, ServiceItem } from "@/types";
 
 export const hero = {
-  eyebrow: "Hyderabad & Pune · Est. 2006 · 20+ Years of Mission-Critical Engineering",
+  eyebrow: "Hyderabad & Pune · CPRI Certified · Yaskawa Authorized System Integrator",
   title: "Industrial Automation & Electrical Solutions",
-  titleLine1: "Powering India's",
-  titleLine2: "Industrial & Infrastructure Backbone",
-  subtitle: "From an engineering workshop in Jeedimetla in 2006 to powering state power grids, locomotive traction, and high-speed robotic manufacturing — two decades of CPRI-certified zero-downtime excellence, now advancing as NEIPL.",
-  primaryCta: { label: "Explore Solutions", href: "/services" },
-  secondaryCta: { label: "Request a Quote", href: "/contact" },
-  badges: ["✓ CPRI Tested to 6000A", "✓ Indian Railways & PSU Proven", "✓ Yaskawa & Siemens Tier-1 Partner"] as const,
+  titleLine1: "Zero-Downtime Automation &",
+  titleLine2: "Turnkey Electrical Infrastructure",
+  subtitle:
+    "We engineer, build, and commission CPRI-tested 6000A electrical panels, Yaskawa motion systems, and turnkey PLC/SCADA automation under one roof — ending multi-vendor finger-pointing so your plant runs at peak capacity.",
+  primaryCta: { label: "Schedule Engineering Audit", href: "/contact" },
+  secondaryCta: { label: "Explore Turnkey Solutions", href: "/services" },
+  badges: [
+    "✓ CPRI Tested to 6000A / 50kA",
+    "✓ Single-Source Turnkey Accountability",
+    "✓ Yaskawa Tier-1 Authorized Partner",
+    "✓ Indian Railways & Mahagenco Proven",
+  ] as const,
 } as const;
+
+export const threeStepPlan = {
+  eyebrow: "The Path to Predictable Uptime",
+  title: "How We Deliver Frictionless Turnkey Execution",
+  subtitle:
+    "Industrial plant heads face massive operational penalties when fragmented subcontractors blame each other. Here is our proven 3-step engineering roadmap to certified, first-pass operational reliability.",
+  steps: [
+    {
+      number: "01",
+      title: "Engineering Audit & Sizing",
+      outcome: "Zero Sizing Risk Before Metal Cutting",
+      description:
+        "We audit your Single-Line Diagrams (SLDs), duty cycles, fault levels, and harmonic profiles to architect optimal switchgear and drive topologies before fabrication begins.",
+      deliverable: "Comprehensive Technical Feasibility & GA Layouts",
+    },
+    {
+      number: "02",
+      title: "Certified In-House FAT Simulation",
+      outcome: "100% Pre-Commissioned at Works",
+      description:
+        "Every panel, PLC logic routine, and drive train is fully assembled, wired, and simulated under full load at our Hyderabad & Pune facilities before site dispatch.",
+      deliverable: "Witnessed Factory Acceptance Test (FAT) Report",
+    },
+    {
+      number: "03",
+      title: "Turnkey Commissioning & 24/7 AMC",
+      outcome: "Immediate Production Ramp & Single SLA",
+      description:
+        "Our specialized field engineers execute on-site erection, loop testing, and statutory CEIG/CEA clearances, backed by rapid-response 24/7 AMC support.",
+      deliverable: "Live Commercial Handover & Guaranteed Uptime SLAs",
+    },
+  ] as readonly PlanStepItem[],
+  villainContrast: {
+    problemTitle: "The Multi-Vendor Blame Game",
+    problemText:
+      "When a critical line trips, panel fabricators blame the drive vendor, who blames the PLC coders. The Plant Head is left absorbing lakhs in stalled production.",
+    solutionTitle: "The NEIPL Turnkey Guarantee",
+    solutionText:
+      "One engineering contract, one point of warranty, and complete in-house accountability from design to commissioning.",
+  },
+} as const;
+
 
 export const capabilities = [
   {

@@ -1,8 +1,10 @@
 export { Hero } from "./Hero";
 export { ClientsPartnersMarquee } from "./ClientsPartnersMarquee";
+export { ThreeStepPlan } from "./ThreeStepPlan";
 export { IndustriesCinematic } from "./IndustriesCinematic";
 export { SolutionsEcosystem } from "./SolutionsEcosystem";
 export { CompanyExpertise } from "./CompanyExpertise";
+
 export { FeaturedCaseStudies } from "./FeaturedCaseStudies";
 export { ClientEndorsements } from "./ClientEndorsements";
 export { EnquiryCtaBanner } from "./EnquiryCtaBanner";
