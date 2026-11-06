@@ -62,30 +62,30 @@ export function ThreeStepPlan() {
           ))}
         </div>
 
-        {/* The Villain Contrast Box: Multi-Vendor Finger-Pointing vs NEIPL Turnkey Guarantee */}
+        {/* Turnkey Comparison Box: Multi-Vendor Finger-Pointing vs NEIPL Single-Source Guarantee */}
         <div className="mt-12 rounded-xl border border-line bg-canvas p-6 lg:p-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
             <div className="rounded-lg border border-red-500/20 bg-red-950/20 p-5">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-red-400">
-                The Status Quo Villain
+                {threeStepPlan.deliveryComparison.problemTag}
               </span>
               <h4 className="mt-1 text-base font-bold text-text-white">
-                {threeStepPlan.villainContrast.problemTitle}
+                {threeStepPlan.deliveryComparison.problemTitle}
               </h4>
               <p className="mt-2 text-xs leading-relaxed text-text-muted">
-                {threeStepPlan.villainContrast.problemText}
+                {threeStepPlan.deliveryComparison.problemText}
               </p>
             </div>
 
             <div className="rounded-lg border border-accent/30 bg-accent/10 p-5">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent">
-                The Guide&#39;s Commitment
+                {threeStepPlan.deliveryComparison.solutionTag}
               </span>
               <h4 className="mt-1 text-base font-bold text-text-white">
-                {threeStepPlan.villainContrast.solutionTitle}
+                {threeStepPlan.deliveryComparison.solutionTitle}
               </h4>
               <p className="mt-2 text-xs leading-relaxed text-text-white/90">
-                {threeStepPlan.villainContrast.solutionText}
+                {threeStepPlan.deliveryComparison.solutionText}
               </p>
             </div>
           </div>

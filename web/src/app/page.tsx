@@ -20,7 +20,7 @@ export default function HomePage() {
       {/* 02. Dual Auto-Scrolling Clients & OEM Partners Strips (Bright Theme) */}
       <ClientsPartnersMarquee />
 
-      {/* 03. StoryBrand 3-Step Plan & Villain Contrast (Dark Theme) */}
+      {/* 03. 3-Step Adoption Plan & Turnkey Delivery Comparison (Dark Theme) */}
       <ThreeStepPlan />
 
       {/* 04. Industries with Interactive Pan-Out Cards (Dark Cinematic Theme) */}

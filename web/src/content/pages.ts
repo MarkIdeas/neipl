@@ -48,14 +48,17 @@ export const threeStepPlan = {
       deliverable: "Live Commercial Handover & Guaranteed Uptime SLAs",
     },
   ] as readonly PlanStepItem[],
-  villainContrast: {
+  deliveryComparison: {
+    problemTag: "The Conventional Subcontractor Risk",
     problemTitle: "The Multi-Vendor Blame Game",
     problemText:
       "When a critical line trips, panel fabricators blame the drive vendor, who blames the PLC coders. The Plant Head is left absorbing lakhs in stalled production.",
+    solutionTag: "The Single-Source Advantage",
     solutionTitle: "The NEIPL Turnkey Guarantee",
     solutionText:
       "One engineering contract, one point of warranty, and complete in-house accountability from design to commissioning.",
   },
+
 } as const;
 
 
