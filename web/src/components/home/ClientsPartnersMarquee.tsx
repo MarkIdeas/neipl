@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui";
 
@@ -107,11 +107,121 @@ const PARTNERS: readonly PartnerBrand[] = [
   },
 ];
 
-export function ClientsPartnersMarquee() {
-  // Duplicated for seamless infinite loop (translateX(-50%))
-  const clientLoop = [...CLIENTS, ...CLIENTS];
-  const partnerLoop = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
+/**
+ * Cotmac-style Indexed "Assembly Line" Paced Slider
+ * Halts on each station for delayMs, then executes a smooth deceleration glide (700ms)
+ * to the next station. Perfectly seamless infinite loop with zero rewind snap.
+ */
+function AssemblyLineSlider<T extends { name: string; logo: string; role?: string; desc?: string }>({
+  items,
+  delayMs,
+  type,
+  label,
+  indicatorColor,
+}: {
+  items: readonly T[];
+  delayMs: number;
+  type: "client" | "partner";
+  label: string;
+  indicatorColor: "emerald" | "amber";
+}) {
+  const total = items.length;
+  // Repeat items 3 times for seamless wrapping: [0..total-1, total..2*total-1, 2*total..3*total-1]
+  const displayItems = [...items, ...items, ...items];
 
+  const [index, setIndex] = useState(total);
+  const [animate, setAnimate] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const stepForward = useCallback(() => {
+    setAnimate(true);
+    setIndex((prev) => prev + 1);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(stepForward, delayMs);
+    return () => clearInterval(timer);
+  }, [isPaused, delayMs, stepForward]);
+
+  // Seamless jump without animation once we hit 2 * total
+  const handleTransitionEnd = () => {
+    if (index >= 2 * total) {
+      setAnimate(false);
+      setIndex(total);
+    }
+  };
+
+  const isPartner = type === "partner";
+
+  return (
+    <div
+      className="relative w-full"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Category Kicker */}
+      <div className="mb-3 flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <span
+          className={`h-1.5 w-1.5 rounded-full ${
+            indicatorColor === "emerald" ? "bg-emerald-500" : "bg-amber-500"
+          } animate-pulse`}
+        />
+        <span>{label}</span>
+      </div>
+
+      {/* Viewport with wide feather edge masks */}
+      <div className="relative overflow-hidden py-1">
+        <div
+          ref={undefined}
+          data-testid={`logo-slider-track-${type}`}
+          onTransitionEnd={handleTransitionEnd}
+          className={`flex ${
+            animate
+              ? "transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              : ""
+          } [--visible-cols:2] sm:[--visible-cols:3] md:[--visible-cols:4] lg:[--visible-cols:5]`}
+          style={{
+            transform: `translateX(calc(-${index} * (100% / var(--visible-cols, 5))))`,
+          }}
+        >
+          {displayItems.map((item, idx) => (
+            <div
+              key={`${item.name}-${idx}`}
+              className="flex-none w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2.5 sm:px-3.5"
+            >
+              <div className="group flex h-32 sm:h-36 flex-col items-center justify-center rounded-2xl p-3 text-center transition-all duration-300 hover:bg-slate-50 hover:shadow-xs">
+                {/* Logo Image */}
+                <div className="relative flex h-14 sm:h-16 w-full items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src={item.logo}
+                    alt={`${item.name} logo`}
+                    width={160}
+                    height={56}
+                    style={{ width: "auto", height: "auto" }}
+                    className="max-h-11 sm:max-h-13 w-auto max-w-[130px] sm:max-w-[150px] object-contain drop-shadow-xs"
+                  />
+                </div>
+
+                {/* Subtitle / Role Badge */}
+                <div className="mt-2 w-full truncate">
+                  <p className="truncate text-xs sm:text-[13px] font-bold text-slate-800 transition-colors group-hover:text-amber-600">
+                    {item.name}
+                  </p>
+                  <p className="truncate text-[10px] sm:text-[11px] font-medium text-slate-500">
+                    {isPartner ? `${item.desc} · Authorized` : item.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ClientsPartnersMarquee() {
   return (
     <section className="relative border-y border-slate-200/80 bg-white py-14 sm:py-18 overflow-hidden">
       {/* Header — Streamlined & Zero Repetition */}
@@ -124,84 +234,29 @@ export function ClientsPartnersMarquee() {
         </div>
       </Container>
 
-      {/* Edge-to-Edge Seamless Dual Marquee Tracks */}
+      {/* Edge-to-Edge Seamless Dual Assembly-Line Sliders */}
       <div className="relative w-full space-y-6 sm:space-y-8">
         {/* Soft edge gradient fade masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-20 sm:w-36 bg-gradient-to-r from-white via-white/80 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-20 sm:w-36 bg-gradient-to-l from-white via-white/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-36 bg-gradient-to-r from-white via-white/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-36 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
-        {/* Track 1: Enterprise Client Deployments */}
-        <div className="relative overflow-hidden">
-          <div className="mb-2.5 flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            <span>Verified Enterprise Deployments</span>
-          </div>
+        {/* Track 1: Enterprise Client Deployments (Paced station-by-station assembly line glide) */}
+        <AssemblyLineSlider
+          items={CLIENTS}
+          delayMs={2800}
+          type="client"
+          label="Verified Enterprise Deployments"
+          indicatorColor="emerald"
+        />
 
-          <div
-            data-testid="logo-slider-track-client"
-            className="marquee-track-left flex items-center gap-6 sm:gap-10 py-2 [--visible-cols:2] sm:[--visible-cols:3] md:[--visible-cols:4] lg:[--visible-cols:5]"
-          >
-            {clientLoop.map((item, idx) => (
-              <div
-                key={`client-${item.name}-${idx}`}
-                className="group flex flex-none flex-col items-center justify-center rounded-xl px-4 py-2.5 transition-all duration-300 hover:bg-slate-50"
-              >
-                <div className="relative flex h-14 sm:h-16 w-36 sm:w-44 items-center justify-center transition-transform duration-300 group-hover:scale-105">
-                  <Image
-                    src={item.logo}
-                    alt={`${item.name} logo`}
-                    width={160}
-                    height={56}
-                    style={{ width: "auto", height: "auto" }}
-                    className="max-h-11 sm:max-h-13 w-auto max-w-[130px] sm:max-w-[150px] object-contain drop-shadow-xs"
-                  />
-                </div>
-                <span className="mt-1 text-[11px] font-semibold text-slate-600 transition-colors group-hover:text-slate-900 whitespace-nowrap">
-                  {item.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Track 2: Authorized OEM Global Network */}
-        <div className="relative overflow-hidden">
-          <div className="mb-2.5 flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-            <span>Authorized Global OEM Network</span>
-          </div>
-
-          <div
-            data-testid="logo-slider-track-partner"
-            className="marquee-track-right flex items-center gap-6 sm:gap-10 py-2 [--visible-cols:2] sm:[--visible-cols:3] md:[--visible-cols:4] lg:[--visible-cols:5]"
-          >
-            {partnerLoop.map((item, idx) => (
-              <div
-                key={`partner-${item.name}-${idx}`}
-                className="group flex flex-none flex-col items-center justify-center rounded-xl px-4 py-2.5 transition-all duration-300 hover:bg-slate-50"
-              >
-                <div className="relative flex h-14 sm:h-16 w-36 sm:w-44 items-center justify-center transition-transform duration-300 group-hover:scale-105">
-                  <Image
-                    src={item.logo}
-                    alt={`${item.name} logo`}
-                    width={160}
-                    height={56}
-                    style={{ width: "auto", height: "auto" }}
-                    className="max-h-11 sm:max-h-13 w-auto max-w-[130px] sm:max-w-[150px] object-contain drop-shadow-xs"
-                  />
-                </div>
-                <div className="mt-1 flex items-center gap-1.5 whitespace-nowrap">
-                  <span className="text-[11px] font-bold text-amber-700">
-                    {item.name}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-medium">
-                    · Partner
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Track 2: Authorized OEM Global Network (Offset timing for organic factory rhythm) */}
+        <AssemblyLineSlider
+          items={PARTNERS}
+          delayMs={3500}
+          type="partner"
+          label="Authorized Global OEM Network"
+          indicatorColor="amber"
+        />
       </div>
     </section>
   );
