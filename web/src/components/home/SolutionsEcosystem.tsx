@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui";
@@ -138,6 +138,18 @@ const ALL_SOLUTIONS: readonly SolutionItem[] = [
 
 export function SolutionsEcosystem() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    setActiveIdx((prev) => (prev + 1) % ALL_SOLUTIONS.length);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(nextSlide, 4200);
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
+
   const active = ALL_SOLUTIONS[activeIdx];
   const ActiveIcon = active.icon;
 
@@ -145,6 +157,8 @@ export function SolutionsEcosystem() {
     <section
       id="solutions"
       aria-label="Solutions and Capabilities Ecosystem"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
       className="relative bg-white py-6 sm:py-8 lg:py-8 text-slate-800 border-b border-slate-200/90 overflow-hidden"
     >
       <Container>
@@ -183,9 +197,15 @@ export function SolutionsEcosystem() {
                 type="button"
                 role="tab"
                 aria-selected={isActive}
-                onClick={() => setActiveIdx(idx)}
-                onMouseEnter={() => setActiveIdx(idx)}
-                className={`flex-none sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
+                onClick={() => {
+                  setActiveIdx(idx);
+                  setIsPaused(true);
+                }}
+                onMouseEnter={() => {
+                  setActiveIdx(idx);
+                  setIsPaused(true);
+                }}
+                className={`flex-none sm:flex-1 relative overflow-hidden inline-flex items-center justify-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-amber-500 text-slate-950 shadow-xs ring-1 ring-amber-600/30"
                     : "border border-slate-200 bg-slate-50/90 text-slate-700 hover:border-slate-300 hover:bg-slate-100"
@@ -193,6 +213,12 @@ export function SolutionsEcosystem() {
               >
                 <Icon size={14} className={isActive ? "text-slate-950" : "text-slate-500"} />
                 <span className="whitespace-nowrap">{s.shortLabel}</span>
+                {isActive && !isPaused && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-950/40 animate-pulse"
+                  />
+                )}
               </button>
             );
           })}

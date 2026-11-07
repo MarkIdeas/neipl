@@ -266,7 +266,6 @@ export function IndustriesCinematic() {
               {/* Sector Photography (Bright & Vivid) */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950 border-b border-white/10">
                 <Image
-                  key={activeSector.img}
                   src={activeSector.img || "/images/subpage_bg.jpg"}
                   alt={activeSector.name}
                   fill
@@ -346,7 +345,7 @@ export function IndustriesCinematic() {
           {/* Sector Selector Console with 36px Free-Standing Line-Art Icons */}
           <div
             data-testid="industry-selector-list"
-            className="order-last lg:order-first lg:col-span-7"
+            className="hidden lg:block order-last lg:order-first lg:col-span-7"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
               {industries.map((ind, idx) => {
@@ -378,20 +377,20 @@ export function IndustriesCinematic() {
                     onMouseEnter={() => setHoveredIndex(idx)}
                     onMouseLeave={() => setHoveredIndex(null)}
                     onFocus={() => setSelectedIndex(idx)}
-                    className={`ind-cinematic-pill group flex items-center gap-3.5 sm:gap-4 rounded-2xl p-3 sm:p-3.5 text-left transition-all duration-300 cursor-pointer ${
+                    className={`ind-cinematic-pill group flex items-center gap-3.5 sm:gap-4 rounded-2xl p-3 sm:p-3.5 text-left transition-colors duration-200 cursor-pointer ${
                       isLast ? "sm:col-span-2" : ""
                     } ${
                       isActive
-                        ? "border-2 border-amber-500 bg-amber-500/15 text-white shadow-[0_0_20px_rgba(233,155,53,0.25)] scale-[1.01]"
-                        : "bg-slate-950/80 border border-white/10 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(233,155,53,0.2)] text-slate-200"
+                        ? "border-2 border-amber-500 bg-amber-500/15 text-white shadow-[0_0_20px_rgba(233,155,53,0.25)]"
+                        : "border-2 border-white/10 bg-slate-950/80 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(233,155,53,0.2)] text-slate-200"
                     }`}
                   >
                     {/* Left: Free-Standing Line-Art Graphic (36px, No Enclosing Box) */}
                     <div
-                      className={`flex-none flex items-center justify-center transition-all duration-300 ${
+                      className={`flex-none flex items-center justify-center transition-colors duration-200 ${
                         isActive
-                          ? "text-amber-400 scale-105"
-                          : "text-amber-400/90 group-hover:text-amber-300 group-hover:scale-110"
+                          ? "text-amber-400"
+                          : "text-amber-400/90 group-hover:text-amber-300"
                       }`}
                     >
                       <IconComp size={36} />
