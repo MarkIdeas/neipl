@@ -7,54 +7,65 @@ export function ThreeStepPlan() {
     <section
       id="how-it-works"
       aria-label="How It Works - The 3-Step Plan"
-      className="relative bg-surface py-20 lg:py-28 overflow-hidden border-t border-line"
+      className="relative bg-slate-50/70 py-20 lg:py-28 overflow-hidden border-t border-slate-200/90 text-slate-900"
     >
+      {/* Ambient subtle warm glow at top center */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -z-10 -translate-x-1/2 w-3/4 h-64 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent blur-3xl" />
+
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Eyebrow center>{threeStepPlan.eyebrow}</Eyebrow>
-          <SectionHeading className="mt-4 text-center">
+          <SectionHeading tone="dark" className="mt-3 text-center text-slate-900 text-3xl sm:text-4xl font-extrabold tracking-tight">
             {threeStepPlan.title}
           </SectionHeading>
-          <p className="mt-4 text-sm md:text-base leading-relaxed text-text-muted text-balance">
+          <p className="mt-4 text-sm md:text-base leading-relaxed text-slate-600 text-balance text-center">
             {threeStepPlan.subtitle}
           </p>
         </div>
 
-        {/* 3-Step Process Grid */}
+        {/* 3-Step Process Grid (Elevated Pure-White Cards with Amber Hover Lift) */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {threeStepPlan.steps.map((step) => (
             <div
               key={step.number}
-              className="relative flex flex-col justify-between rounded-xl border border-line bg-card p-6 lg:p-8 transition-all duration-300 hover:border-accent/40 shadow-sm"
+              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-7 lg:p-8 transition-all duration-300 hover:-translate-y-2 hover:border-amber-500 hover:shadow-xl shadow-xs overflow-hidden"
             >
-              <div>
+              {/* Top Accent Line on hover */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Luminous Step Watermark */}
+              <span className="pointer-events-none absolute -bottom-3 -right-2 font-mono text-8xl font-black text-slate-100 select-none group-hover:text-amber-50/80 transition-colors">
+                {step.number}
+              </span>
+
+              <div className="relative z-10">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent border border-accent/30 bg-accent/10 px-2.5 py-1 rounded-full">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-700 border border-amber-300/80 bg-amber-50 px-3 py-1 rounded-full shadow-2xs">
                     Step {step.number}
                   </span>
-                  <span className="font-mono text-2xl font-bold text-text-muted/40">
-                    {step.number}
+                  <span className="font-mono text-xs font-extrabold tracking-wider text-slate-400 group-hover:text-amber-600 transition-colors">
+                    PHASE {step.number}
                   </span>
                 </div>
 
-                <h3 className="mt-5 text-xl font-bold text-text-white tracking-tight">
+                <h3 className="mt-5 text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">
                   {step.title}
                 </h3>
 
-                <div className="mt-2 inline-block rounded-md bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
+                <div className="mt-2.5 inline-block rounded-md bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
                   {step.outcome}
                 </div>
 
-                <p className="mt-4 text-sm leading-relaxed text-text-muted">
+                <p className="mt-4 text-[13.5px] sm:text-sm leading-relaxed text-slate-600">
                   {step.description}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-line/60">
-                <span className="text-xs uppercase tracking-wider font-semibold text-text-muted/80 block">
+              <div className="mt-6 pt-4 border-t border-slate-100 relative z-10">
+                <span className="text-[11px] uppercase tracking-wider font-bold text-slate-500 block">
                   Key Deliverable
                 </span>
-                <span className="text-xs font-medium text-text-white mt-1 block">
+                <span className="text-xs font-bold text-slate-900 mt-1 block">
                   {step.deliverable}
                 </span>
               </div>
@@ -62,40 +73,44 @@ export function ThreeStepPlan() {
           ))}
         </div>
 
-        {/* Turnkey Comparison Box: Multi-Vendor Finger-Pointing vs NEIPL Single-Source Guarantee */}
-        <div className="mt-12 rounded-xl border border-line bg-canvas p-6 lg:p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
-            <div className="rounded-lg border border-red-500/20 bg-red-950/20 p-5">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-red-400">
-                {threeStepPlan.deliveryComparison.problemTag}
-              </span>
-              <h4 className="mt-1 text-base font-bold text-text-white">
-                {threeStepPlan.deliveryComparison.problemTitle}
-              </h4>
-              <p className="mt-2 text-xs leading-relaxed text-text-muted">
-                {threeStepPlan.deliveryComparison.problemText}
-              </p>
+        {/* Turnkey Comparison Box: High-Contrast Executive Basement Section */}
+        <div className="mt-14 rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            <div className="rounded-xl border border-red-200/80 bg-red-50/70 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-red-700 bg-red-100/90 border border-red-200 px-3 py-1 rounded-full inline-block">
+                  {threeStepPlan.deliveryComparison.problemTag}
+                </span>
+                <h4 className="mt-3 text-base sm:text-lg font-bold text-red-950">
+                  {threeStepPlan.deliveryComparison.problemTitle}
+                </h4>
+                <p className="mt-2 text-xs sm:text-[13px] leading-relaxed text-red-900/80">
+                  {threeStepPlan.deliveryComparison.problemText}
+                </p>
+              </div>
             </div>
 
-            <div className="rounded-lg border border-accent/30 bg-accent/10 p-5">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent">
-                {threeStepPlan.deliveryComparison.solutionTag}
-              </span>
-              <h4 className="mt-1 text-base font-bold text-text-white">
-                {threeStepPlan.deliveryComparison.solutionTitle}
-              </h4>
-              <p className="mt-2 text-xs leading-relaxed text-text-white/90">
-                {threeStepPlan.deliveryComparison.solutionText}
-              </p>
+            <div className="rounded-xl border border-emerald-300/80 bg-emerald-50/80 p-5 sm:p-6 flex flex-col justify-between shadow-2xs">
+              <div>
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 border border-emerald-200 px-3 py-1 rounded-full inline-block">
+                  {threeStepPlan.deliveryComparison.solutionTag}
+                </span>
+                <h4 className="mt-3 text-base sm:text-lg font-extrabold text-emerald-950">
+                  {threeStepPlan.deliveryComparison.solutionTitle}
+                </h4>
+                <p className="mt-2 text-xs sm:text-[13px] leading-relaxed text-emerald-900">
+                  {threeStepPlan.deliveryComparison.solutionText}
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-line/60 pt-6">
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-slate-100 pt-6">
             <div>
-              <p className="text-sm font-semibold text-text-white">
+              <p className="text-sm font-bold text-slate-900">
                 Ready to review your single-line diagram with our engineering team?
               </p>
-              <p className="text-xs text-text-muted mt-0.5">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Get a comprehensive feasibility review within 48 business hours.
               </p>
             </div>

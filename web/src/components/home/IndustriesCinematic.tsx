@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { industries } from "@/content/pages";
@@ -156,6 +156,7 @@ const SECTOR_METADATA: Record<string, SectorMeta> = {
 export function IndustriesCinematic() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const previewCardRef = useRef<HTMLDivElement>(null);
 
   const activeIndex = hoveredIndex !== null ? hoveredIndex : selectedIndex;
   const activeSector = industries[activeIndex] || industries[0];
@@ -200,7 +201,7 @@ export function IndustriesCinematic() {
       </div>
 
       <Container className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-14">
+        <div className="mx-auto max-w-3xl text-center mb-8 sm:mb-14">
           <Eyebrow center>Domain Expertise</Eyebrow>
           <SectionHeading className="mt-3 text-white">
             Industries Powered by <span className="text-amber-500">Nandini</span>
@@ -211,16 +212,56 @@ export function IndustriesCinematic() {
         </div>
 
         {/*
-          Responsive 2-Column Layout:
-          - On Mobile (< lg): Interactive Preview Card renders FIRST (order-first) so the image and specs are immediately visible without scrolling.
-          - On Desktop (lg+): Sector Cards sit on the left (lg:order-first, 7 cols) and the Preview Card sits on the right (lg:order-last, 5 cols).
+          Responsive Layout:
+          - On Mobile (< lg): Pattern 1 — Horizontal Swipeable Chips at the top + Interactive Preview Card immediately below (zero yo-yo scrolling).
+          - On Desktop (lg+): 2-Column Grid (Left: 13 Sector Cards, Right: Sticky Telemetry HUD Card).
         */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-start">
-          {/* Interactive Telemetry HUD Card (First on Mobile, Right Column on Desktop) */}
+          {/* Interactive Telemetry HUD Card Column */}
           <div
+            ref={previewCardRef}
             data-testid="industry-preview-card"
             className="order-first lg:order-last lg:col-span-5 lg:sticky lg:top-28"
           >
+            {/* Mobile Pattern 1: Horizontal Swipeable Sector Chips (Visible only on < lg) */}
+            <div className="mb-4 lg:hidden">
+              <div className="mb-2 flex items-center justify-between px-1">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  Swipe &amp; Tap Industries
+                </span>
+                <span className="text-[11px] font-medium text-slate-400">
+                  13 Key Sectors
+                </span>
+              </div>
+
+              <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 pt-1 scrollbar-none snap-x snap-mandatory">
+                {industries.map((ind, idx) => {
+                  const isActive = activeIndex === idx;
+                  const IconComp = INDUSTRY_LINE_ICONS[ind.name] || OilGasLineIcon;
+
+                  return (
+                    <button
+                      key={`mobile-chip-${ind.name}`}
+                      type="button"
+                      onClick={() => {
+                        setSelectedIndex(idx);
+                        setHoveredIndex(null);
+                      }}
+                      className={`flex-none snap-start flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-bold transition-all duration-300 cursor-pointer ${
+                        isActive
+                          ? "bg-amber-500 text-slate-950 shadow-md border border-amber-400 scale-105"
+                          : "bg-slate-900/90 border border-white/15 text-slate-300 hover:border-amber-400"
+                      }`}
+                    >
+                      <IconComp size={16} className={isActive ? "text-slate-950" : "text-amber-400"} />
+                      <span className="whitespace-nowrap">{ind.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="overflow-hidden rounded-3xl border border-white/15 bg-slate-900/90 backdrop-blur-2xl shadow-2xl transition-all duration-500">
               {/* Sector Photography (Bright & Vivid) */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950 border-b border-white/10">
@@ -258,6 +299,7 @@ export function IndustriesCinematic() {
                       {activeSector.name}
                     </h3>
                   </div>
+
                   <p className="mt-2.5 text-[13.5px] sm:text-[14px] leading-relaxed text-slate-300">
                     {activeSector.desc}
                   </p>
@@ -322,6 +364,16 @@ export function IndustriesCinematic() {
                     onClick={() => {
                       setSelectedIndex(idx);
                       setHoveredIndex(null);
+                      if (
+                        typeof window !== "undefined" &&
+                        window.innerWidth < 1024 &&
+                        typeof previewCardRef.current?.scrollIntoView === "function"
+                      ) {
+                        previewCardRef.current.scrollIntoView({
+                          behavior: "smooth",
+                          block: "nearest",
+                        });
+                      }
                     }}
                     onMouseEnter={() => setHoveredIndex(idx)}
                     onMouseLeave={() => setHoveredIndex(null)}
