@@ -3,12 +3,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { certificates, awards } from "@/content/pages";
+import { certificates } from "@/content/pages";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui";
 import {
   ArrowRightIcon,
   CheckIcon,
-  WrenchShieldIcon,
   BuildingIcon,
 } from "@/components/icons";
 
@@ -240,25 +239,25 @@ export function ClientEndorsements() {
   return (
     <section
       id="verified-proof"
-      className="bg-canvas py-24 sm:py-32 text-white border-b border-slate-800"
+      className="bg-canvas py-6 sm:py-8 lg:py-8 text-white border-b border-slate-800"
     >
       <Container>
-        {/* Section Heading */}
-        <div className="mx-auto max-w-3xl text-center mb-10">
+        {/* Compact Section Heading */}
+        <div className="mx-auto max-w-3xl text-center mb-4 sm:mb-5">
           <Eyebrow center>Verified Proof</Eyebrow>
-          <SectionHeading className="mt-3 text-white">
+          <SectionHeading className="mt-1.5 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white">
             Client Performance &amp; Completion Records
           </SectionHeading>
-          <p className="mt-4 text-[16px] text-slate-300">
-            Inspect 15 original, signed engineering work completion certificates, OEM channel authorizations, and national industry awards conferred by Indian PSUs, Railways, and enterprise leaders.
+          <p className="mt-1 text-xs sm:text-sm text-slate-300 text-balance">
+            Inspect 15 original signed engineering work completion certificates, OEM channel authorizations, and CPRI type test reports.
           </p>
         </div>
 
-        {/* Step 2: Interactive Category Filter Pills */}
+        {/* Interactive Category Filter Pills */}
         <div
           role="tablist"
           aria-label="Filter verified completion certificates"
-          className="mb-10 flex flex-wrap items-center justify-center gap-2.5"
+          className="mb-4 sm:mb-5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2"
         >
           {FILTER_TABS.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -269,15 +268,15 @@ export function ClientEndorsements() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab.id)}
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-[13px] font-bold transition-all duration-200 ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-amber-500 text-slate-950 shadow-md"
+                    ? "bg-amber-500 text-slate-950 shadow-xs"
                     : "border border-white/15 bg-white/5 text-slate-300 hover:border-amber-400/50 hover:text-white"
                 }`}
               >
                 <span>{tab.label}</span>
                 <span
-                  className={`rounded-full px-2 py-0.5 font-mono text-[11px] font-extrabold ${
+                  className={`rounded-full px-1.5 py-0.2 font-mono text-[10px] font-extrabold ${
                     isActive
                       ? "bg-slate-950/20 text-slate-950"
                       : "bg-white/10 text-amber-400"
@@ -290,8 +289,8 @@ export function ClientEndorsements() {
           })}
         </div>
 
-        {/* Step 1: Enriched Visual Dossier Cards Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Compact Viewport-Optimized 2x3 Dossier Cards Grid */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filteredWithIndex.map(({ cert, originalIndex }) => {
             const certCode = `CERT-${String(originalIndex + 1).padStart(
               2,
@@ -301,55 +300,55 @@ export function ClientEndorsements() {
               <div
                 key={cert.client + cert.doc}
                 data-testid="verified-cert-card"
-                className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/60 hover:bg-white/10"
+                className="group flex flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-3.5 sm:p-4 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400/60 hover:bg-white/10"
               >
                 <div>
                   {/* Card Top Metadata Row */}
-                  <div className="flex items-center justify-between gap-2 pb-4 border-b border-white/10">
-                    <div className="flex items-center gap-2">
-                      <span className="rounded-md bg-amber-500/15 px-2.5 py-1 font-mono text-[11px] font-extrabold text-amber-400 border border-amber-500/30">
+                  <div className="flex items-center justify-between gap-2 pb-2 border-b border-white/10">
+                    <div className="flex items-center gap-1.5">
+                      <span className="rounded-md bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-extrabold text-amber-400 border border-amber-500/30">
                         {certCode}
                       </span>
                       {cert.sector && (
-                        <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-slate-300">
+                        <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-300">
                           {cert.sector}
                         </span>
                       )}
                     </div>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/25">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/25">
                       <CheckIcon size={10} />
                       <span>Signed Scan</span>
                     </span>
                   </div>
 
                   {/* Client Brand Badge & Title */}
-                  <div className="mt-5 flex items-start gap-3.5">
+                  <div className="mt-2.5 flex items-start gap-3">
                     {cert.logo ? (
                       <div
                         data-testid="verified-cert-icon"
-                        className="flex h-12 w-20 flex-none items-center justify-center rounded-xl bg-white p-1.5 shadow-sm transition-transform duration-300 group-hover:scale-105"
+                        className="flex h-10 w-16 flex-none items-center justify-center rounded-lg bg-white p-1 shadow-2xs transition-transform duration-300 group-hover:scale-105"
                       >
                         <Image
                           src={cert.logo}
                           alt={`${cert.client} logo`}
-                          width={72}
-                          height={36}
-                          className="max-h-9 w-auto object-contain"
+                          width={60}
+                          height={30}
+                          className="max-h-7 w-auto object-contain"
                         />
                       </div>
                     ) : (
                       <div
                         data-testid="verified-cert-icon"
-                        className="flex h-12 w-12 flex-none items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/15 font-mono text-[15px] font-black text-amber-400"
+                        className="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-amber-500/30 bg-amber-500/15 font-mono text-xs font-black text-amber-400"
                       >
-                        <BuildingIcon size={20} />
+                        <BuildingIcon size={18} />
                       </div>
                     )}
-                    <div>
-                      <h4 className="text-[16px] font-extrabold text-white leading-snug group-hover:text-amber-400 transition-colors">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-sm font-extrabold text-white leading-tight group-hover:text-amber-400 transition-colors truncate">
                         {cert.client}
                       </h4>
-                      <p className="mt-1 text-[12px] font-bold uppercase tracking-wider text-amber-400/90">
+                      <p className="mt-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-400/90 truncate">
                         {cert.doc}
                       </p>
                     </div>
@@ -357,21 +356,21 @@ export function ClientEndorsements() {
 
                   {/* Engineering Scope Box */}
                   {cert.scope && (
-                    <div className="mt-4 rounded-xl border border-white/5 bg-slate-950/60 p-3.5 text-[13px] leading-relaxed text-slate-300">
+                    <div className="mt-2 rounded-lg border border-white/5 bg-slate-950/60 p-2 text-xs leading-relaxed text-slate-300 line-clamp-2">
                       {cert.scope}
                     </div>
                   )}
                 </div>
 
                 {/* Card Action Footer */}
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between gap-2">
                   <button
                     type="button"
                     onClick={() => setSelectedCertIndex(originalIndex)}
-                    className="inline-flex items-center gap-1.5 text-[13px] font-extrabold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-extrabold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer"
                   >
                     <span>Inspect Signed Scan</span>
-                    <ArrowRightIcon size={14} />
+                    <ArrowRightIcon size={12} />
                   </button>
 
                   <a
@@ -379,7 +378,7 @@ export function ClientEndorsements() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Open raw scan in new tab"
-                    className="text-[11px] font-semibold text-slate-400 hover:text-white transition-colors"
+                    className="text-[10px] font-semibold text-slate-400 hover:text-white transition-colors"
                   >
                     Raw JPG ↗
                   </a>
@@ -389,82 +388,33 @@ export function ClientEndorsements() {
           })}
         </div>
 
-        {/* Step 4: National & OEM Recognition / Accredited Awards Strip */}
-        <div className="mt-16 rounded-2xl border border-white/10 bg-slate-950/70 p-6 sm:p-8 shadow-2xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-amber-500 text-slate-950 shadow-md">
-                <WrenchShieldIcon size={22} />
-              </div>
-              <div>
-                <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400">
-                  National &amp; OEM Recognition
-                </span>
-                <h3 className="text-[19px] font-extrabold text-white">
-                  Accredited Industry &amp; L&amp;T Excellence Awards
-                </h3>
-              </div>
-            </div>
+        {/* High-Contrast Sleek Bottom Credibility & Gallery Bar */}
+        <div className="mt-5 rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-3 text-slate-300">
+            <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
+              <CheckIcon size={14} />
+              <span>15 Original Signed Certificates on File</span>
+            </span>
+            <span className="hidden md:inline text-slate-600">·</span>
+            <span className="hidden md:inline text-slate-400">
+              CPRI 6000A / 50kA Certified Type Test Reports
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
             <Link
-              href="/about#awards"
-              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-amber-400 hover:text-amber-300"
+              href="/about#certifications"
+              className="font-bold text-amber-400 hover:text-amber-300 transition-colors"
             >
-              <span>View Recognition Timeline</span>
-              <ArrowRightIcon size={14} />
+              Credentials &amp; Awards →
+            </Link>
+            <Link
+              href="/gallery"
+              className="rounded-lg bg-amber-500 px-3 py-1 font-extrabold text-slate-950 hover:bg-amber-400 transition-colors"
+            >
+              Gallery Overview
             </Link>
           </div>
-
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {awards.map((award) => (
-              <div
-                key={award.title}
-                className="flex flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-amber-400/40"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-md bg-amber-500/20 px-2.5 py-0.5 font-mono text-[12px] font-extrabold text-amber-400">
-                      {award.year}
-                    </span>
-                    <span className="text-[11px] font-bold text-slate-400">
-                      {award.by}
-                    </span>
-                  </div>
-                  <h4 className="mt-3 text-[14px] font-bold text-white leading-snug">
-                    {award.title}
-                  </h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* High-Contrast Bottom Action Bar */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/about#certifications"
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-[14px] font-extrabold text-slate-950 shadow-md transition-all hover:bg-amber-400"
-          >
-            <span>Explore Full Credentials &amp; Dossier</span>
-            <ArrowRightIcon size={16} />
-          </Link>
-
-          {activeTab !== "all" ? (
-            <button
-              type="button"
-              onClick={() => setActiveTab("all")}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-[14px] font-bold text-white transition-all hover:border-amber-400 hover:bg-white/10 cursor-pointer"
-            >
-              <span>Show All 15 Verified Certificates Here</span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setActiveTab("featured")}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-[14px] font-bold text-white transition-all hover:border-amber-400 hover:bg-white/10 cursor-pointer"
-            >
-              <span>Show Featured 6 Flagships</span>
-            </button>
-          )}
         </div>
       </Container>
 

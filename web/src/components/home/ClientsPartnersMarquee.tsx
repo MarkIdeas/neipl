@@ -161,7 +161,7 @@ function AssemblyLineSlider<T extends { name: string; logo: string; role?: strin
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Category Kicker */}
-      <div className="mb-3 flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+      <div className="mb-1.5 flex items-center justify-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500">
         <span
           className={`h-1.5 w-1.5 rounded-full ${
             indicatorColor === "emerald" ? "bg-emerald-500" : "bg-amber-500"
@@ -171,7 +171,7 @@ function AssemblyLineSlider<T extends { name: string; logo: string; role?: strin
       </div>
 
       {/* Viewport with wide feather edge masks */}
-      <div className="relative overflow-hidden py-1">
+      <div className="relative overflow-hidden py-0.5">
         <div
           ref={undefined}
           data-testid={`logo-slider-track-${type}`}
@@ -188,27 +188,27 @@ function AssemblyLineSlider<T extends { name: string; logo: string; role?: strin
           {displayItems.map((item, idx) => (
             <div
               key={`${item.name}-${idx}`}
-              className="flex-none w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2.5 sm:px-3.5"
+              className="flex-none w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 sm:px-3"
             >
-              <div className="group flex h-32 sm:h-36 flex-col items-center justify-center rounded-2xl p-3 text-center transition-all duration-300 hover:bg-slate-50 hover:shadow-xs">
+              <div className="group flex h-14 sm:h-16 items-center gap-2.5 rounded-xl border border-slate-200/80 bg-slate-50/80 px-2.5 py-1.5 transition-all duration-300 hover:border-amber-400 hover:bg-white hover:shadow-xs">
                 {/* Logo Image */}
-                <div className="relative flex h-14 sm:h-16 w-full items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                <div className="relative flex h-8 sm:h-9 w-16 sm:w-20 flex-none items-center justify-center transition-transform duration-300 group-hover:scale-105">
                   <Image
                     src={item.logo}
                     alt={`${item.name} logo`}
-                    width={160}
-                    height={56}
+                    width={100}
+                    height={36}
                     style={{ width: "auto", height: "auto" }}
-                    className="max-h-11 sm:max-h-13 w-auto max-w-[130px] sm:max-w-[150px] object-contain drop-shadow-xs"
+                    className="max-h-7 sm:max-h-8 w-auto max-w-[65px] sm:max-w-[76px] object-contain drop-shadow-xs"
                   />
                 </div>
 
                 {/* Subtitle / Role Badge */}
-                <div className="mt-2 w-full truncate">
-                  <p className="truncate text-xs sm:text-[13px] font-bold text-slate-800 transition-colors group-hover:text-amber-600">
+                <div className="min-w-0 flex-1 truncate text-left">
+                  <p className="truncate text-[11px] sm:text-xs font-bold text-slate-800 transition-colors group-hover:text-amber-600">
                     {item.name}
                   </p>
-                  <p className="truncate text-[10px] sm:text-[11px] font-medium text-slate-500">
+                  <p className="truncate text-[9px] sm:text-[10px] font-medium text-slate-500">
                     {isPartner ? `${item.desc} · Authorized` : item.role}
                   </p>
                 </div>
@@ -223,24 +223,24 @@ function AssemblyLineSlider<T extends { name: string; logo: string; role?: strin
 
 export function ClientsPartnersMarquee() {
   return (
-    <div className="relative bg-white pt-16 sm:pt-20 pb-8 sm:pb-12 overflow-hidden">
-      {/* Header — Streamlined & Zero Repetition */}
+    <div className="relative bg-white pt-6 sm:pt-8 pb-3 sm:pb-4 overflow-hidden">
+      {/* Header — Streamlined & Compact */}
       <Container>
-        <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
+        <div className="mx-auto max-w-3xl text-center mb-4 sm:mb-5">
           <Eyebrow center>Clients &amp; Authorized Partners</Eyebrow>
-          <SectionHeading tone="dark" className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
+          <SectionHeading tone="dark" className="mt-1.5 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">
             Trusted by India&apos;s Core Industries, Backed by Global Automation Leaders
           </SectionHeading>
         </div>
       </Container>
 
       {/* Edge-to-Edge Seamless Dual Assembly-Line Sliders */}
-      <div className="relative w-full space-y-6 sm:space-y-8">
+      <div className="relative w-full space-y-2.5 sm:space-y-3">
         {/* Soft edge gradient fade masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-36 bg-gradient-to-r from-white via-white/80 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-36 bg-gradient-to-l from-white via-white/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-12 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
-        {/* Track 1: Enterprise Client Deployments (Paced station-by-station assembly line glide) */}
+        {/* Track 1: Enterprise Client Deployments */}
         <AssemblyLineSlider
           items={CLIENTS}
           delayMs={2800}
@@ -249,7 +249,7 @@ export function ClientsPartnersMarquee() {
           indicatorColor="emerald"
         />
 
-        {/* Track 2: Authorized OEM Global Network (Offset timing for organic factory rhythm) */}
+        {/* Track 2: Authorized OEM Global Network */}
         <AssemblyLineSlider
           items={PARTNERS}
           delayMs={3500}
