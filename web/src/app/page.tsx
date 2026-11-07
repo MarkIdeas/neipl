@@ -17,30 +17,40 @@ export default function HomePage() {
       {/* 01. StoryBrand Cinematic Industrial Hero (Dark Theme) */}
       <Hero />
 
-      {/* 02. Dual Auto-Scrolling Clients & OEM Partners Strips (Bright Theme) */}
-      <ClientsPartnersMarquee />
+      {/* 02. Credibility & 3-Step Execution Plan (Unified Master Bright Section) */}
+      <section
+        id="credibility-and-execution"
+        className="relative bg-white border-y border-slate-200/90 text-slate-900 overflow-hidden"
+      >
+        {/* Tier 1: Clients & OEM Partners Cotmac-Style Paced Slider */}
+        <ClientsPartnersMarquee />
 
-      {/* 03. 3-Step Adoption Plan & Turnkey Delivery Comparison (Dark Theme) */}
-      <ThreeStepPlan />
+        {/* Seamless Architectural Divider */}
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="border-t border-slate-200/80" />
+        </div>
 
-      {/* 04. Industries with Interactive Pan-Out Cards (Dark Cinematic Theme) */}
+        {/* Tier 2: 3-Step Adoption Plan & Turnkey Delivery Guarantee */}
+        <ThreeStepPlan />
+      </section>
+
+      {/* 03. Industries with Interactive Pan-Out Cards (Dark Cinematic Theme) */}
       <IndustriesCinematic />
 
-      {/* 05. Solutions & Capabilities Ecosystem (Bright Theme) */}
+      {/* 04. Solutions & Capabilities Ecosystem (Bright Theme) */}
       <SolutionsEcosystem />
 
-      {/* 06. Engineering Proof Points & CPRI 6000A Expertise (Dark Theme) */}
+      {/* 05. Engineering Proof Points & CPRI 6000A Expertise (Dark Theme) */}
       <CompanyExpertise />
 
-      {/* 07. Featured Projects & Case Studies (Bright Theme) */}
+      {/* 06. Featured Projects & Case Studies (Bright Theme) */}
       <FeaturedCaseStudies />
 
-      {/* 08. Verified Client Endorsements & Scans (Dark Theme) */}
+      {/* 07. Verified Client Endorsements & Scans (Dark Theme) */}
       <ClientEndorsements />
 
-      {/* 09. Project Enquiry CTA (Bright Theme) */}
+      {/* 08. Project Enquiry CTA (Bright Theme) */}
       <EnquiryCtaBanner />
     </>
   );
 }
-

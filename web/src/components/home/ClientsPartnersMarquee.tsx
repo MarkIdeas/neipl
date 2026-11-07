@@ -223,7 +223,7 @@ function AssemblyLineSlider<T extends { name: string; logo: string; role?: strin
 
 export function ClientsPartnersMarquee() {
   return (
-    <section className="relative border-y border-slate-200/80 bg-white py-14 sm:py-18 overflow-hidden">
+    <div className="relative bg-white pt-16 sm:pt-20 pb-8 sm:pb-12 overflow-hidden">
       {/* Header — Streamlined & Zero Repetition */}
       <Container>
         <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
@@ -258,6 +258,6 @@ export function ClientsPartnersMarquee() {
           indicatorColor="amber"
         />
       </div>
-    </section>
+    </div>
   );
 }
