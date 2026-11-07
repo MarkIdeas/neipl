@@ -3,8 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
-import { company } from "@/content/site";
-import { PhoneIcon } from "@/components/icons";
 
 export function SiteHeader() {
   return (
@@ -44,14 +42,6 @@ export function SiteHeader() {
 
         {/* Right CTA Block */}
         <div className="flex items-center gap-3 sm:gap-4">
-          <a
-            href={`tel:${company.mobile.replace(/\s+/g, "")}`}
-            className="hidden items-center gap-1.5 text-[13px] font-semibold text-slate-600 transition-colors hover:text-amber-600 xl:flex"
-          >
-            <PhoneIcon size={14} className="text-amber-500" />
-            <span>{company.mobile}</span>
-          </a>
-
           <Link
             href="/contact"
             className="hidden sm:inline-flex items-center justify-center rounded-xl bg-amber-500 px-4 py-2.5 text-[13px] font-bold text-white shadow-sm transition-all hover:bg-amber-600 hover:shadow-md cursor-pointer"
