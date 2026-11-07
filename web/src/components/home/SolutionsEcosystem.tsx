@@ -3,7 +3,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { certificates } from "@/content/pages";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui";
+import { CertificateLightboxModal } from "./ClientEndorsements";
 import {
   GearIcon,
   RobotIcon,
@@ -14,9 +16,10 @@ import {
   WrenchShieldIcon,
   ArrowRightIcon,
   CheckIcon,
+  BuildingIcon,
 } from "@/components/icons";
 
-interface SolutionItem {
+interface SolutionPairItem {
   num: string;
   title: string;
   shortLabel: string;
@@ -26,9 +29,10 @@ interface SolutionItem {
   desc: string;
   bullets: readonly string[];
   icon: React.ComponentType<{ size?: number; className?: string }>;
+  certIndex: number;
 }
 
-const ALL_SOLUTIONS: readonly SolutionItem[] = [
+const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
   {
     num: "01",
     title: "Industrial Automation",
@@ -43,6 +47,7 @@ const ALL_SOLUTIONS: readonly SolutionItem[] = [
       "Distributed fail-safe I/O architectures",
     ],
     icon: GearIcon,
+    certIndex: 1, // Mahagenco Work Completion Certificate
   },
   {
     num: "02",
@@ -58,6 +63,7 @@ const ALL_SOLUTIONS: readonly SolutionItem[] = [
       "Automated machine tending cells",
     ],
     icon: RobotIcon,
+    certIndex: 6, // TPTY Traversers / Heavy Precision Positioning
   },
   {
     num: "03",
@@ -73,6 +79,7 @@ const ALL_SOLUTIONS: readonly SolutionItem[] = [
       "Heavy-duty MCC & PCC switchboards",
     ],
     icon: PlugIcon,
+    certIndex: 3, // Vasavadatta Cement (Aditya Birla)
   },
   {
     num: "04",
@@ -88,6 +95,7 @@ const ALL_SOLUTIONS: readonly SolutionItem[] = [
       "Crane VVVF anti-sway drive systems",
     ],
     icon: BoltIcon,
+    certIndex: 0, // Visaka Industries VFD Performance Certificate
   },
   {
     num: "05",
@@ -103,81 +111,87 @@ const ALL_SOLUTIONS: readonly SolutionItem[] = [
       "Yokogawa certified loop calibration",
     ],
     icon: ChartIcon,
+    certIndex: 2, // Yokogawa Authorization Letter
   },
   {
     num: "06",
-    title: "Embedded & IoT Edge Gateways",
-    shortLabel: "IoT & Embedded",
+    title: "Municipal & Heavy Pumping Systems",
+    shortLabel: "Pumping SCADA",
     anchor: "embedded",
-    badge: "Custom Edge Firmware",
+    badge: "Municipal Water PSU",
     image: "/images/service_embedded.jpg",
-    desc: "Bespoke industrial electronics, microcontroller hardware engineering, edge telemetry gateways, and real-time cloud SCADA firmware.",
+    desc: "Automated municipal water pumping station control, APFC energy mitigation banks, and distributed reservoir SCADA networks.",
     bullets: [
-      "Custom controller hardware & PCB design",
-      "Industrial edge telemetry gateways",
-      "Remote predictive diagnostics",
+      "Automated multi-pump VVVF panels",
+      "APFC power factor correction banks",
+      "Reservoir level & telemetry loops",
     ],
     icon: CpuChipIcon,
+    certIndex: 4, // Kolhapur Municipal Corporation (KMC)
   },
   {
     num: "07",
-    title: "24/7 AMC & Rapid Spares Depot",
-    shortLabel: "24/7 AMC SLA",
+    title: "24/7 AMC & Railway Test Benches",
+    shortLabel: "Railways & AMC",
     anchor: "maintenance",
-    badge: "24/7 Rapid Response SLA",
+    badge: "Indian Railways Proven",
     image: "/images/service_maintenance.jpg?v=2",
-    desc: "Preventative and emergency annual maintenance contracts backed by 24/7 on-site field engineers and dedicated spares depots in Hyderabad & Pune.",
+    desc: "Locomotive alternator test bench automation and round-the-clock emergency AMC contracts backed by dedicated spares depots in Hyderabad & Pune.",
     bullets: [
+      "Locomotive dyno test bench rigs",
       "24/7 emergency breakdown dispatch",
-      "Preventative VVVF & servo servicing",
       "Hyderabad & Pune genuine spares depots",
     ],
     icon: WrenchShieldIcon,
+    certIndex: 5, // S.E.C. Railway Raipur Test Bench
   },
 ];
 
 export function SolutionsEcosystem() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [lightboxCertIndex, setLightboxCertIndex] = useState<number | null>(null);
 
   const nextSlide = useCallback(() => {
     setActiveIdx((prev) => (prev + 1) % ALL_SOLUTIONS.length);
   }, []);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || lightboxCertIndex !== null) return;
     const interval = setInterval(nextSlide, 4200);
     return () => clearInterval(interval);
-  }, [isPaused, nextSlide]);
+  }, [isPaused, lightboxCertIndex, nextSlide]);
 
   const active = ALL_SOLUTIONS[activeIdx];
   const ActiveIcon = active.icon;
+  const activeCert = certificates[active.certIndex] || certificates[0];
+  const certCode = `CERT-${String(active.certIndex + 1).padStart(2, "0")}`;
 
   return (
     <section
       id="solutions"
-      aria-label="Solutions and Capabilities Ecosystem"
+      aria-label="Solutions Ecosystem and Verified Completion Records"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative bg-white py-6 sm:py-8 lg:py-8 text-slate-800 border-b border-slate-200/90 overflow-hidden"
+      className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-evenly bg-white py-8 sm:py-12 text-slate-800 border-b border-slate-200/90 overflow-hidden"
     >
       <Container>
         {/* Compact Executive Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-6">
           <div>
-            <Eyebrow>Solutions Ecosystem</Eyebrow>
+            <Eyebrow>Capabilities &amp; Verified Proof</Eyebrow>
             <SectionHeading tone="dark" className="mt-1 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">
-              End-to-End Industrial Capabilities
+              End-to-End Capabilities Backed by Signed Completion Records
             </SectionHeading>
             <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl">
-              From preliminary single-line engineering and CPRI 6000A panel fabrication to robotics commissioning and round-the-clock AMC lifecycle support.
+              Explore our core engineering disciplines, each paired directly with verified PSU and enterprise work completion certificates.
             </p>
           </div>
           <Link
-            href="/services"
+            href="/gallery"
             className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-all hover:border-amber-500 hover:bg-amber-500 hover:text-white shadow-2xs self-start md:self-auto"
           >
-            <span>Browse All 7 Verticals</span>
+            <span>Inspect All 15 Records in Gallery</span>
             <ArrowRightIcon size={14} />
           </Link>
         </div>
@@ -186,7 +200,7 @@ export function SolutionsEcosystem() {
         <div
           role="tablist"
           aria-label="Industrial Solutions Selector"
-          className="flex overflow-x-auto no-scrollbar gap-1.5 sm:gap-2 pb-1 mb-4"
+          className="flex overflow-x-auto no-scrollbar gap-1.5 sm:gap-2 pb-1 mb-5"
         >
           {ALL_SOLUTIONS.map((s, idx) => {
             const isActive = idx === activeIdx;
@@ -224,10 +238,10 @@ export function SolutionsEcosystem() {
           })}
         </div>
 
-        {/* Bottom Split Feature Stage */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch rounded-xl border border-slate-200/90 bg-slate-50/70 p-4 sm:p-5 shadow-xs">
+        {/* Bottom Split Feature Stage: Capability (Left) + Signed Verification Record (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch rounded-2xl border border-slate-200/90 bg-slate-50/70 p-4 sm:p-6 shadow-xs">
           {/* Left Column: Solution Brief, Specs & Deliverables */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
+          <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
               {/* Badge & Number */}
               <div className="flex items-center gap-2">
@@ -235,7 +249,7 @@ export function SolutionsEcosystem() {
                   {active.badge}
                 </span>
                 <span className="font-mono text-[10px] font-extrabold text-slate-400">
-                  VERTICAL {active.num} OF 07
+                  DISCIPLINE {active.num} OF 07
                 </span>
               </div>
 
@@ -289,36 +303,123 @@ export function SolutionsEcosystem() {
             </div>
           </div>
 
-          {/* Right Column: High-Resolution Industrial Photographic Stage */}
-          <div className="lg:col-span-5 relative min-h-[200px] sm:min-h-[240px] lg:min-h-[260px] rounded-lg overflow-hidden border border-slate-200/90 bg-slate-900 shadow-xs">
-            <Image
-              src={active.image}
-              alt={`${active.title} engineered deployment`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover transition-transform duration-500 hover:scale-105"
-              priority={activeIdx === 0}
-            />
-            {/* Gradient Scrim */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-
-            {/* Context Badge on Visual */}
-            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-              <div className="rounded-md border border-white/20 bg-slate-950/80 px-2.5 py-1 backdrop-blur-xs">
-                <span className="font-mono text-[10px] font-bold text-amber-400 block">
-                  {active.badge}
-                </span>
-                <span className="text-xs font-extrabold text-white">
-                  {active.title}
+          {/* Right Column: Verified Signed Certificate & Performance Dossier Card */}
+          <div className="lg:col-span-6 flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-xs">
+            <div>
+              {/* Certificate Top Metadata Row */}
+              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-200/80">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 font-mono text-[10px] font-extrabold text-amber-900">
+                    {certCode}
+                  </span>
+                  {activeCert.sector && (
+                    <span className="rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600">
+                      {activeCert.sector}
+                    </span>
+                  )}
+                </div>
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                  <CheckIcon size={10} />
+                  <span>Signed &amp; Sealed Record</span>
                 </span>
               </div>
-              <span className="rounded-full bg-emerald-500/20 border border-emerald-400/40 px-2 py-0.5 text-[10px] font-bold text-emerald-300 backdrop-blur-xs">
-                Active Architecture
-              </span>
+
+              {/* Client Brand & Handover Document */}
+              <div className="mt-3 flex items-start gap-3">
+                {activeCert.logo ? (
+                  <div className="flex h-11 w-18 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1 shadow-2xs">
+                    <Image
+                      src={activeCert.logo}
+                      alt={`${activeCert.client} logo`}
+                      width={64}
+                      height={32}
+                      className="max-h-8 w-auto object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
+                    <BuildingIcon size={18} />
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-sm sm:text-[15px] font-extrabold text-slate-900 leading-tight truncate">
+                    {activeCert.client}
+                  </h4>
+                  <p className="mt-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-700 truncate">
+                    {activeCert.doc}
+                  </p>
+                </div>
+              </div>
+
+              {/* Official Handover Scope */}
+              <div className="mt-2.5 rounded-lg border border-slate-200/80 bg-slate-50 p-2.5 text-xs leading-relaxed text-slate-700">
+                <span className="font-mono text-[9.5px] font-extrabold uppercase tracking-wider text-slate-500 block mb-0.5">
+                  Handover Scope &amp; Deliverable:
+                </span>
+                {activeCert.scope}
+              </div>
+            </div>
+
+            {/* Document Action Footer */}
+            <div className="mt-3.5 pt-2.5 border-t border-slate-200/80 flex items-center justify-between gap-3">
+              <button
+                type="button"
+                onClick={() => setLightboxCertIndex(active.certIndex)}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-extrabold text-slate-950 shadow-2xs transition-all hover:bg-amber-400 cursor-pointer"
+              >
+                <span>Inspect Signed Scan</span>
+                <ArrowRightIcon size={12} />
+              </button>
+
+              <a
+                href={activeCert.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open original scan in new tab"
+                className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 transition-colors"
+              >
+                Raw Document Scan ↗
+              </a>
             </div>
           </div>
         </div>
+
+        {/* Sleek Bottom Credibility Bar */}
+        <div className="mt-4 rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+          <div className="flex flex-wrap items-center gap-2.5 text-slate-600">
+            <span className="inline-flex items-center gap-1.5 text-emerald-700 font-bold">
+              <CheckIcon size={14} />
+              <span>15 Original Signed Certificates on File</span>
+            </span>
+            <span className="hidden md:inline text-slate-400">·</span>
+            <span className="hidden md:inline text-slate-600">
+              CPRI 6000A / 50kA Certified Type Test Reports
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/about#certifications"
+              className="font-bold text-amber-700 hover:text-amber-800 transition-colors"
+            >
+              Credentials &amp; Awards →
+            </Link>
+            <Link
+              href="/gallery"
+              className="rounded-lg bg-slate-900 px-2.5 py-1 font-bold text-white hover:bg-slate-800 transition-colors"
+            >
+              Gallery Overview
+            </Link>
+          </div>
+        </div>
       </Container>
+
+      {/* Lightbox Modal for Full Signed Scan Preview */}
+      <CertificateLightboxModal
+        activeIndex={lightboxCertIndex}
+        onClose={() => setLightboxCertIndex(null)}
+        onSelectIndex={(idx) => setLightboxCertIndex(idx)}
+      />
     </section>
   );
 }

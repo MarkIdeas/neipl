@@ -7,7 +7,6 @@ import {
   SolutionsEcosystem,
   CompanyExpertise,
   FeaturedCaseStudies,
-  ClientEndorsements,
   EnquiryCtaBanner,
 } from "@/components/home";
 
@@ -46,10 +45,7 @@ export default function HomePage() {
       {/* 06. Featured Projects & Case Studies (Bright Theme) */}
       <FeaturedCaseStudies />
 
-      {/* 07. Verified Client Endorsements & Scans (Dark Theme) */}
-      <ClientEndorsements />
-
-      {/* 08. Project Enquiry CTA (Bright Theme) */}
+      {/* 07. Project Enquiry CTA Banner (Dark Theme) */}
       <EnquiryCtaBanner />
     </>
   );
