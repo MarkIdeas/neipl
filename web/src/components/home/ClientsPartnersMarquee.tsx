@@ -190,7 +190,7 @@ function AssemblyLineSlider<T extends { name: string; logo: string; role?: strin
               key={`${item.name}-${idx}`}
               className="flex-none w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2.5 sm:px-3.5"
             >
-              <div className="group flex h-28 sm:h-32 flex-col items-center justify-center rounded-2xl border border-slate-200/90 bg-white p-3 text-center shadow-xs transition-all duration-300 hover:border-amber-400 hover:shadow-md">
+              <div className="group flex h-28 sm:h-32 flex-col items-center justify-center rounded-2xl p-3 text-center transition-all duration-300 hover:bg-slate-50/70">
                 {/* Logo Image — Large & Prominent */}
                 <div className="relative flex h-12 sm:h-14 w-full items-center justify-center transition-transform duration-300 group-hover:scale-105">
                   <Image
