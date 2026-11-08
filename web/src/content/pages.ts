@@ -222,6 +222,118 @@ export const industries: readonly Industry[] = [
   },
 ] as const;
 
+export interface SectorMeta {
+  readonly subtitle: string;
+  readonly systems: readonly string[];
+}
+
+export const sectorMetadata: Record<string, SectorMeta> = {
+  "Oil & Gas": {
+    subtitle: "Refinery Pumping & Offshore SIL-3 Safety",
+    systems: [
+      "ATEX & IECEx Zone 1 / 2 Flameproof Panels",
+      "SIL-3 Emergency Shutdown Systems (ESD)",
+      "Gas Compressor Surge Control & Telemetry",
+    ],
+  },
+  "Pharmaceuticals": {
+    subtitle: "Cleanroom Air Handling & Batch GMP Control",
+    systems: [
+      "21 CFR Part 11 Electronic Recipe Records",
+      "Variable Air Volume (VAV) Cleanroom VFDs",
+      "Automated High-Accuracy Ingredient Dosing",
+    ],
+  },
+  "Power Generation & Distribution": {
+    subtitle: "Turbine SCADA & CPRI 6000A Switchboards",
+    systems: [
+      "CPRI-Certified 6000A Form 4b Switchboards",
+      "Dual Turbine Governor Synchronization",
+      "IEC 61850 Substation Protection Protocols",
+    ],
+  },
+  "Chemical & Petrochemical": {
+    subtitle: "Continuous Reactions & Ex-d Hazardous Interlocks",
+    systems: [
+      "Exothermic Reaction Safety Interlocks",
+      "Flameproof Pushbutton & Starter Stations",
+      "Redundant Modbus/TCP Field Instrument Loops",
+    ],
+  },
+  "Water & Waste Water Treatment": {
+    subtitle: "Aeration Control & Harmonic-Mitigated VFDs",
+    systems: [
+      "Harmonic-Mitigated Multi-Pump VVVF Panels",
+      "Automated Chemical Dosing & pH Regulation",
+      "Clarifier Scraper PLC Automation Sequences",
+    ],
+  },
+  "Food & Beverages": {
+    subtitle: "Sanitary Drives & High-Speed Bottling Automation",
+    systems: [
+      "Stainless IP66 Washdown Drive Enclosures",
+      "High-Speed Rotary Bottling Motion Control",
+      "Automated End-of-Line Palletizing Cells",
+    ],
+  },
+  "Building Management Systems (BMS)": {
+    subtitle: "Integrated HVAC Ventilation & Fire Safety",
+    systems: [
+      "BACnet & Modbus BMS Central Console",
+      "Chiller Plant Efficiency Optimization VFDs",
+      "Emergency Power Auto-Changeover (AMF)",
+    ],
+  },
+  "Automotive Manufacturing": {
+    subtitle: "Robotic Arc Welding & Chassis Conveyance",
+    systems: [
+      "Yaskawa 6-Axis Turnkey Robotic Welding Cells",
+      "Chassis Line Synchronized Conveyance Drives",
+      "Computerized Dyno Test Quality Benches",
+    ],
+  },
+  "Paper & Pulp Processing": {
+    subtitle: "Sectional Web Tension & Digester Telemetry",
+    systems: [
+      "Multi-Drive Web Tension Sectional Coordination",
+      "Digester Continuous Level Loop Telemetry",
+      "Energy-Recovery Boiler Instrumentation",
+    ],
+  },
+  "Solar Energy Plants": {
+    subtitle: "PV Array Combiner Boxes & Grid Synchronization",
+    systems: [
+      "String Combiner Boxes with Surge Arresters",
+      "Solar Tracking PLC Closed-Loop Controls",
+      "Grid Feed-in Inverter Synchronization & HT Yard",
+    ],
+  },
+  "Railways & Rolling Stock": {
+    subtitle: "Dyno Test Benches & Traction Motor Test Units",
+    systems: [
+      "Dynamometer Regenerative Drive Test Benches",
+      "Traction Alternator 3-Phase Dynamic Loading",
+      "Loco Shed Automation & Automated Test Benches",
+    ],
+  },
+  "Cement Manufacturing": {
+    subtitle: "Kiln High-Torque Drives & ESP Filtration",
+    systems: [
+      "Heavy-Duty Kiln Variable Frequency Drives",
+      "Raw Mill & Ball Mill Slip-Ring Starters",
+      "Baghouse & ESP Precipitator Control Panels",
+    ],
+  },
+  "Civil Infrastructure & Metro": {
+    subtitle: "Tunnel Jet Fans & Escalator Drive Lineups",
+    systems: [
+      "Dual-Redundant Station Sump Pumping Stations",
+      "Emergency Tunnel Jet Fan Reversible Drives",
+      "Form 4b Substation Power Distribution",
+    ],
+  },
+};
+
 export const leaders = [
   {
     initials: "MM",

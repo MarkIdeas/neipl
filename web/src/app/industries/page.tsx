@@ -63,13 +63,15 @@ export default function IndustriesPage() {
         </Container>
       </section>
 
-      {/* 2. Interactive Industry Viewer */}
-      <section className="border-t border-line bg-surface py-20 sm:py-28">
+      {/* 2. Interactive Industry Viewer (Bright Theme) */}
+      <section className="border-t border-slate-200 bg-slate-50 py-16 sm:py-24 text-slate-900">
         <Container>
-          <div className="mx-auto max-w-2xl text-center mb-14">
+          <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
             <Eyebrow center>Domain Expertise</Eyebrow>
-            <SectionHeading className="mt-3">Comprehensive Sector Coverage</SectionHeading>
-            <p className="mt-4 text-[15px] text-text-muted">
+            <SectionHeading className="mt-3 text-slate-950">
+              Comprehensive Sector Coverage
+            </SectionHeading>
+            <p className="mt-3 text-[15px] sm:text-[16px] text-slate-600">
               Select any industry below to inspect our specific engineering deployments and applications.
             </p>
           </div>
