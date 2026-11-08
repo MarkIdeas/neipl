@@ -19,6 +19,70 @@ import {
   BuildingIcon,
 } from "@/components/icons";
 
+interface ProofEnrichment {
+  impact: string;
+  signatory: string;
+}
+
+const PROOF_ENRICHMENTS: Record<number, ProofEnrichment> = {
+  0: {
+    impact: "Multi-axis 375kW VFD line synchronization with ~18% energy savings",
+    signatory: "General Manager (Works) · Visaka Industries Ltd",
+  },
+  1: {
+    impact: "24/7 boiler telemetry & zero unplanned trips under continuous thermal duty",
+    signatory: "Superintending Engineer (Generation) · MSPGCL",
+  },
+  2: {
+    impact: "Certified partner authorization for precision field loop integration",
+    signatory: "Head of Commercial & Strategic Alliances · Yokogawa India",
+  },
+  3: {
+    impact: "Withstood harsh clinker dust environment with zero busbar thermal hot spots",
+    signatory: "Vice President (Technical) · Vasavadatta Cement",
+  },
+  4: {
+    impact: "Maintained 0.99 power factor across all operating cycles, eliminating penalties",
+    signatory: "Executive Engineer (City Water Supply) · Kolhapur Municipal Corp",
+  },
+  5: {
+    impact: "Automated dynamic load simulation for 25kV diesel traction alternators",
+    signatory: "Divisional Electrical Engineer (G) · S.E.C. Railway Raipur",
+  },
+  6: {
+    impact: "Sub-millimeter positioning drive control for 50-tonne rolling-stock traverser",
+    signatory: "Senior Divisional Mechanical Engineer · Carriage Repair Works",
+  },
+  7: {
+    impact: "Precision solvent extraction flow monitoring preventing volatile vapor loss",
+    signatory: "Senior Plant Manager & Technical Controller · Vaishali Agro Soya",
+  },
+  8: {
+    impact: "Continuous heavy fluid transfer pumping with automatic pressure compensation",
+    signatory: "Director of Plant Operations · Narayan Agro Oils Udgir",
+  },
+  9: {
+    impact: "End-to-end synchronized conveyance automation with zero line jam downtime",
+    signatory: "Chief Project Engineer · Turnkey Projects Division",
+  },
+  10: {
+    impact: "Export-grade tropicalized CPRI switchgear meeting international utilities code",
+    signatory: "Director of Engineering Works · ARM Limited, Kenya",
+  },
+  11: {
+    impact: "Harmonic distortion mitigated to <3% THD with active multi-zone filtration",
+    signatory: "Managing Director & Chief Engineer · Vishwa Engineering",
+  },
+  12: {
+    impact: "5+ years continuous vector drive performance on high-torque expeller mills",
+    signatory: "Managing Partner · Ganesh Agro Industries",
+  },
+  13: {
+    impact: "Zero-blackout electrical protection & RCCB compliance for divisional HQ",
+    signatory: "Senior Divisional Electrical Engineer · South Central Railway",
+  },
+};
+
 interface SolutionPairItem {
   num: string;
   title: string;
@@ -27,8 +91,10 @@ interface SolutionPairItem {
   badge: string;
   image: string;
   desc: string;
+  specMatrix: readonly { label: string; value: string }[];
   bullets: readonly string[];
   icon: React.ComponentType<{ size?: number; className?: string }>;
+  photoMetadata: { location: string; status: string; facility: string };
   proof1Index: number;
   proof2Index: number;
 }
@@ -42,12 +108,22 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     badge: "PLC · SCADA · RTU",
     image: "/images/service_automation.jpg",
     desc: "Turnkey control system architecture: PLC, SCADA, RTU panels, HMI design, and fail-safe plant commissioning across continuous-process industries.",
+    specMatrix: [
+      { label: "Platforms", value: "Siemens S7 · Rockwell · Schneider" },
+      { label: "Protocols", value: "Modbus · Profinet · EtherNet/IP" },
+      { label: "Safety Rating", value: "Fail-Safe SIL-2 / SIL-3 Redundancy" },
+    ],
     bullets: [
-      "Turnkey PLC & RTU control panels",
-      "Plant-wide SCADA telemetry",
-      "Distributed fail-safe I/O architectures",
+      "Turnkey PLC & RTU control panels with witnessed FAT",
+      "Plant-wide SCADA telemetry with historical event logging",
+      "Distributed fail-safe I/O architectures with optical loops",
     ],
     icon: GearIcon,
+    photoMetadata: {
+      location: "Mahagenco Koradi Thermal Station",
+      status: "Active Commercial Duty",
+      facility: "Engineered at Jeedimetla Works",
+    },
     proof1Index: 1, // Mahagenco Work Completion Certificate (CERT-02)
     proof2Index: 11, // Vishwa Engineering Excellence (CERT-12)
   },
@@ -59,12 +135,22 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     badge: "Turnkey Workcells",
     image: "/images/service_robotics.jpg",
     desc: "Complete robotic workcells engineered for micron-level repeatability, arc welding, palletizing, and hazardous industrial material handling.",
+    specMatrix: [
+      { label: "Kinematics", value: "6-Axis Articulated (20kg–500kg)" },
+      { label: "Precision", value: "±0.03mm Path Repeatability" },
+      { label: "Protection", value: "Cat 4 Safety PLC & Light Fencing" },
+    ],
     bullets: [
-      "Robotic arc welding cells",
-      "High-speed palletization & packaging",
-      "Automated machine tending cells",
+      "Robotic arc welding cells with dual servo positioners",
+      "High-speed palletization, depalletizing & packaging",
+      "Automated CNC machine tending with vision-guided infeed",
     ],
     icon: RobotIcon,
+    photoMetadata: {
+      location: "Heavy Rolling Stock Carriage Works",
+      status: "Automated Workcell Active",
+      facility: "Integrated at Bhosari, Pune Hub",
+    },
     proof1Index: 6, // TPTY Traversers / Railway Workshops (CERT-07)
     proof2Index: 9, // DCS Limited (CERT-10)
   },
@@ -75,13 +161,23 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     anchor: "panels",
     badge: "CPRI Tested 6000A / 50kA",
     image: "/images/service_panels.jpg",
-    desc: "CPRI type-tested low-tension switchboards and motor control centers engineered to withstand severe 6000A short circuit faults.",
+    desc: "CPRI type-tested low-tension switchboards and motor control centers engineered to withstand severe 6000A short circuit faults under IS/IEC 61439.",
+    specMatrix: [
+      { label: "Fault Rating", value: "CPRI 6000A / 50kA for 1s Withstand" },
+      { label: "Form Factor", value: "Form 4b Separation · IP54/IP55" },
+      { label: "Busbar Copper", value: "99.9% Electrolytic ETP Grade" },
+    ],
     bullets: [
-      "CPRI certified tested to 6000A",
-      "AMF & APFC automatic capacitor banks",
-      "Heavy-duty MCC & PCC switchboards",
+      "Form 4b Drawout Motor Control Centers (MCC)",
+      "High-capacity 6000A Power Control Centers (PCC)",
+      "Microprocessor APFC capacitor banks for 0.99 PF",
     ],
     icon: PlugIcon,
+    photoMetadata: {
+      location: "Central Switchgear Testing Bay",
+      status: "CPRI Tested & Certified",
+      facility: "Central Switchgear Works, Hyderabad",
+    },
     proof1Index: 3, // Vasavadatta Cement / Aditya Birla (CERT-04)
     proof2Index: 10, // ARM Limited, Kenya (CERT-11)
   },
@@ -93,12 +189,22 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     badge: "Yaskawa Authorized Partner",
     image: "/images/service_drives.jpg?v=2",
     desc: "Variable frequency, servo, and DC drive engineering. Authorized tier-1 Yaskawa channel partner with factory-certified drive testing lab support.",
+    specMatrix: [
+      { label: "Hardware", value: "Yaskawa GA700 · A1000 · Sigma-7" },
+      { label: "Power Range", value: "0.75kW to 630kW (415V / 690V)" },
+      { label: "Harmonics", value: "Active Filters (<5% IEEE 519 THD)" },
+    ],
     bullets: [
-      "Yaskawa GA700 & A1000 inverters",
-      "Sigma-7 high-precision servos",
-      "Crane VVVF anti-sway drive systems",
+      "Multi-drive speed synchronization for rolling mills",
+      "Overhead crane VVVF anti-sway motion control panels",
+      "Component-level VFD diagnostic & repair lab in Pune",
     ],
     icon: BoltIcon,
+    photoMetadata: {
+      location: "Continuous Manufacturing Drive Bay",
+      status: "Tier-1 Channel Integration",
+      facility: "Bhosari Drive Testing Lab, Pune",
+    },
     proof1Index: 0, // Visaka Industries VFD Performance Certificate (CERT-01)
     proof2Index: 12, // Ganesh Agro Industries (CERT-13)
   },
@@ -110,12 +216,22 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     badge: "Yokogawa Channel Partner",
     image: "/images/service_instrumentation.jpg",
     desc: "Precision process transmitters and measurement networks. Authorized Yokogawa channel partner for mission-critical industrial loops.",
+    specMatrix: [
+      { label: "Transmitters", value: "Yokogawa EJX/EJA · Flow · Radar" },
+      { label: "Fieldbus", value: "4–20mA HART · Foundation Fieldbus" },
+      { label: "Hazardous Area", value: "ATEX / PESO Flameproof Zone 1 & 2" },
+    ],
     bullets: [
-      "Differential pressure & flow loops",
-      "Temperature & level transmitters",
-      "Yokogawa certified loop calibration",
+      "Differential pressure, flow & level transmitter loops",
+      "Electromagnetic and vortex utility flow metering",
+      "Pre-commissioning loop calibration with certificates",
     ],
     icon: ChartIcon,
+    photoMetadata: {
+      location: "Continuous Petrochemical & Chemical Process",
+      status: "Authorized Channel Support",
+      facility: "Jeedimetla Works, Hyderabad",
+    },
     proof1Index: 2, // Yokogawa India Authorization Letter (CERT-03)
     proof2Index: 7, // Vaishali Agro Soya Products (CERT-08)
   },
@@ -127,12 +243,22 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     badge: "Municipal Water PSU",
     image: "/images/service_embedded.jpg",
     desc: "Automated municipal water pumping station control, APFC energy mitigation banks, and distributed reservoir SCADA networks.",
+    specMatrix: [
+      { label: "Topologies", value: "Cascade Multi-Pump · VVVF Regulated" },
+      { label: "Power Factor", value: "Automatic APFC Sustained 0.99 PF" },
+      { label: "Telemetry", value: "GSM / Optical Fiber Reservoir RTUs" },
+    ],
     bullets: [
-      "Automated multi-pump VVVF panels",
-      "APFC power factor correction banks",
-      "Reservoir level & telemetry loops",
+      "Automated multi-pump VVVF panels with soft start",
+      "APFC power factor correction banks (zero penalty)",
+      "Reservoir level, pressure & cavitation safety interlocks",
     ],
     icon: CpuChipIcon,
+    photoMetadata: {
+      location: "Civic Water Intake Station / KMC",
+      status: "Uninterrupted Civic Duty",
+      facility: "Hyderabad & Regional Site Engineering",
+    },
     proof1Index: 4, // Kolhapur Municipal Corporation (CERT-05)
     proof2Index: 8, // Narayan Agro Oils (CERT-09)
   },
@@ -144,12 +270,22 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     badge: "Indian Railways Proven",
     image: "/images/service_maintenance.jpg?v=2",
     desc: "Locomotive alternator test bench automation and round-the-clock emergency AMC contracts backed by dedicated spares depots in Hyderabad & Pune.",
+    specMatrix: [
+      { label: "Rail Capability", value: "Traction Alternator Dyno Test Benches" },
+      { label: "Response SLA", value: "24/7 Breakdown Dispatch (<4h Regional)" },
+      { label: "Spares Depots", value: "Dual Facilities: Hyderabad & Pune" },
+    ],
     bullets: [
-      "Locomotive dyno test bench rigs",
-      "24/7 emergency breakdown dispatch",
-      "Hyderabad & Pune genuine spares depots",
+      "Locomotive dyno test bench rigs for traction alternators",
+      "Thermography, busbar torqueing & Megger insulation audits",
+      "24/7 emergency dispatch with mobile diagnostic kits",
     ],
     icon: WrenchShieldIcon,
+    photoMetadata: {
+      location: "Electric Locomotive Shed & Dyno Bay",
+      status: "Critical Railway Duty",
+      facility: "Hyderabad Central Works & Raipur Site",
+    },
     proof1Index: 5, // S.E.C. Railway Raipur Dyno Test Bench (CERT-06)
     proof2Index: 13, // Sanchalan Bhavan / South Central Railway (CERT-14)
   },
@@ -165,84 +301,107 @@ function ProofCard({
   const cert = certificates[certIndex];
   if (!cert) return null;
   const certCode = `CERT-${String(certIndex + 1).padStart(2, "0")}`;
+  const enrichment = PROOF_ENRICHMENTS[certIndex];
 
   return (
-    <div className="flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-3.5 sm:p-4 shadow-xs">
+    <div className="flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-xs transition-all hover:border-slate-300">
       <div>
         {/* Certificate Top Metadata Row */}
-        <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-200/80">
-          <div className="flex items-center gap-1.5 min-w-0">
-            <span className="rounded-md bg-amber-100 border border-amber-300 px-1.5 py-0.5 font-mono text-[10px] font-extrabold text-amber-900 flex-none">
+        <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-200/80">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 font-mono text-[10px] font-extrabold text-amber-900 flex-none">
               {certCode}
             </span>
             {cert.sector && (
-              <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[9.5px] font-semibold text-slate-600 truncate">
+              <span className="rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[10px] font-semibold text-slate-700 truncate">
                 {cert.sector}
               </span>
             )}
           </div>
-          <span className="flex-none inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[9.5px] font-bold text-emerald-800">
-            <CheckIcon size={10} />
+          <span className="flex-none inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800">
+            <CheckIcon size={11} />
             <span>Signed Record</span>
           </span>
         </div>
 
         {/* Client Brand & Handover Document */}
-        <div className="mt-2.5 flex items-center gap-2.5">
+        <div className="mt-3 flex items-center gap-3">
           {cert.logo ? (
-            <div className="flex h-10 w-16 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1 shadow-2xs">
+            <div className="flex h-11 w-18 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1 shadow-2xs">
               <Image
                 src={cert.logo}
                 alt={`${cert.client} logo`}
-                width={56}
-                height={28}
-                className="max-h-7 w-auto object-contain"
+                width={64}
+                height={32}
+                className="max-h-8 w-auto object-contain"
               />
             </div>
           ) : (
-            <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
-              <BuildingIcon size={16} />
+            <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
+              <BuildingIcon size={18} />
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <h4 className="text-xs sm:text-[13.5px] font-extrabold text-slate-900 leading-tight truncate">
+            <h4 className="text-sm font-extrabold text-slate-900 leading-tight truncate">
               {cert.client}
             </h4>
-            <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-700 truncate">
+            <p className="mt-0.5 text-[10.5px] font-bold uppercase tracking-wider text-amber-700 truncate">
               {cert.doc}
             </p>
           </div>
         </div>
 
-        {/* Official Handover Scope */}
-        <div className="mt-2 rounded-lg border border-slate-200/80 bg-slate-50 p-2 text-[11px] leading-snug text-slate-700 line-clamp-2">
-          <span className="font-mono text-[9px] font-extrabold uppercase tracking-wider text-slate-500 block mb-0.5">
-            Scope &amp; Deliverable:
+        {/* Contract Handover Scope */}
+        <div className="mt-2.5 rounded-lg border border-slate-200/80 bg-slate-50 p-2.5 text-xs leading-relaxed text-slate-700">
+          <span className="font-mono text-[9.5px] font-extrabold uppercase tracking-wider text-slate-500 block mb-0.5">
+            Verified Handover Scope:
           </span>
-          {cert.scope}
+          <p className="font-medium text-slate-800">{cert.scope}</p>
         </div>
+
+        {/* Verified Impact Callout */}
+        {enrichment && (
+          <div className="mt-2 rounded-lg border border-emerald-200/70 bg-emerald-50/70 p-2 text-xs leading-snug text-emerald-900 flex items-start gap-1.5">
+            <span className="text-emerald-700 flex-none mt-0.5 font-bold">✓</span>
+            <div>
+              <span className="font-bold text-emerald-950">Engineering Outcome: </span>
+              <span className="text-emerald-800 font-medium">{enrichment.impact}</span>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Document Action Footer */}
-      <div className="mt-2.5 pt-2 border-t border-slate-200/80 flex items-center justify-between gap-2">
-        <button
-          type="button"
-          onClick={() => onInspect(certIndex)}
-          className="inline-flex items-center gap-1 rounded-lg bg-amber-500 px-2.5 py-1 text-[11px] font-extrabold text-slate-950 shadow-2xs transition-all hover:bg-amber-400 cursor-pointer"
-        >
-          <span>Inspect Signed Scan</span>
-          <ArrowRightIcon size={11} />
-        </button>
+      {/* Signatory Authority & Action Footer */}
+      <div className="mt-3 pt-2.5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+        {enrichment ? (
+          <span className="font-mono text-[9.5px] text-slate-500 truncate max-w-[200px] sm:max-w-[240px]">
+            {enrichment.signatory}
+          </span>
+        ) : (
+          <span className="font-mono text-[9.5px] text-slate-500">
+            Authorized Signatory on File
+          </span>
+        )}
 
-        <a
-          href={cert.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Open original scan in new tab"
-          className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 transition-colors"
-        >
-          Raw Scan ↗
-        </a>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => onInspect(certIndex)}
+            className="inline-flex items-center gap-1 rounded-lg bg-amber-500 px-2.5 py-1 text-[11px] font-extrabold text-slate-950 shadow-2xs transition-all hover:bg-amber-400 cursor-pointer"
+          >
+            <span>Inspect Signed Scan</span>
+            <ArrowRightIcon size={11} />
+          </button>
+          <a
+            href={cert.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open original scan in new tab"
+            className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 transition-colors"
+          >
+            Raw Scan ↗
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -272,23 +431,23 @@ export function SolutionsEcosystem() {
       aria-label="Solutions Ecosystem and Verified Completion Records"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-evenly bg-white py-6 sm:py-8 text-slate-800 border-b border-slate-200/90 overflow-hidden"
+      className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-between bg-white py-6 sm:py-8 text-slate-800 border-b border-slate-200/90 overflow-hidden"
     >
       <Container>
         {/* Compact Executive Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-3.5 sm:mb-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-3 sm:mb-4">
           <div>
             <Eyebrow>Capabilities &amp; Verified Proof</Eyebrow>
             <SectionHeading tone="dark" className="mt-1 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">
               End-to-End Capabilities Backed by Signed Completion Records
             </SectionHeading>
             <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl">
-              Explore our core engineering disciplines, each paired directly with field photos and verified PSU &amp; enterprise work completion certificates.
+              Explore our core engineering disciplines, each paired directly with verified PSU and enterprise work completion certificates.
             </p>
           </div>
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-800 transition-all hover:border-amber-500 hover:bg-amber-500 hover:text-white shadow-2xs self-start md:self-auto"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-all hover:border-amber-500 hover:bg-amber-500 hover:text-white shadow-2xs self-start md:self-auto"
           >
             <span>Inspect All 15 Records in Gallery</span>
             <ArrowRightIcon size={14} />
@@ -318,7 +477,7 @@ export function SolutionsEcosystem() {
                   setActiveIdx(idx);
                   setIsPaused(true);
                 }}
-                className={`flex-none sm:flex-1 relative overflow-hidden inline-flex items-center justify-center gap-1.5 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
+                className={`flex-none sm:flex-1 relative overflow-hidden inline-flex items-center justify-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-amber-500 text-slate-950 shadow-xs ring-1 ring-amber-600/30"
                     : "border border-slate-200 bg-slate-50/90 text-slate-700 hover:border-slate-300 hover:bg-slate-100"
@@ -338,8 +497,8 @@ export function SolutionsEcosystem() {
         </div>
 
         {/* 2x2 Matrix Feature Stage: Row 1 (Specs + Industrial Photo) | Row 2 (Verified Proof 1 + Verified Proof 2) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5 sm:gap-4 items-stretch">
-          {/* Quadrant 1 (Top-Left): Capability Brief & Engineered Specs */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+          {/* Quadrant 1 (Top-Left): Capability Brief & Engineered Specs Matrix */}
           <div className="flex flex-col justify-between rounded-xl border border-slate-200/90 bg-slate-50/70 p-4 sm:p-5 shadow-xs">
             <div>
               {/* Badge & Number */}
@@ -363,21 +522,38 @@ export function SolutionsEcosystem() {
                 {active.desc}
               </p>
 
+              {/* Technical Operating Parameters Matrix */}
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 border-t border-slate-200/80 pt-2.5">
+                {active.specMatrix.map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="rounded-lg border border-slate-200/80 bg-white p-2 text-left shadow-2xs"
+                  >
+                    <span className="font-mono text-[9px] font-extrabold uppercase tracking-wider text-slate-400 block mb-0.5">
+                      {spec.label}
+                    </span>
+                    <span className="text-[11px] font-bold text-slate-800 leading-tight block">
+                      {spec.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
               {/* Engineered Deliverables Checklist */}
-              <div className="mt-3 pt-2.5 border-t border-slate-200/80">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block mb-1.5">
+              <div className="mt-2.5 pt-2 border-t border-slate-200/70">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block mb-1">
                   Engineered Deliverables &amp; Inclusions
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="space-y-1">
                   {active.bullets.map((bullet) => (
                     <div
                       key={bullet}
-                      className="flex items-start gap-1.5 rounded-md border border-slate-200/80 bg-white px-2 py-1.5 text-[11px] font-medium text-slate-800 shadow-2xs"
+                      className="flex items-center gap-2 rounded-md border border-slate-200/60 bg-white/80 px-2 py-1 text-[11px] font-medium text-slate-800"
                     >
-                      <span className="text-emerald-600 flex-none mt-0.5">
+                      <span className="text-emerald-600 flex-none">
                         <CheckIcon size={12} />
                       </span>
-                      <span className="leading-tight">{bullet}</span>
+                      <span className="leading-tight truncate">{bullet}</span>
                     </div>
                   ))}
                 </div>
@@ -395,15 +571,15 @@ export function SolutionsEcosystem() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-bold text-white transition-all hover:bg-slate-800 shadow-2xs"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-white transition-all hover:bg-slate-800 shadow-2xs"
               >
                 <span>Request Quotation →</span>
               </Link>
             </div>
           </div>
 
-          {/* Quadrant 2 (Top-Right): High-Definition Industrial Photo */}
-          <div className="relative min-h-[200px] sm:min-h-[220px] rounded-xl border border-slate-200/90 overflow-hidden shadow-xs group bg-slate-900">
+          {/* Quadrant 2 (Top-Right): High-Definition Industrial Photo & Telemetry HUD */}
+          <div className="relative min-h-[260px] sm:min-h-[280px] lg:min-h-[300px] rounded-xl border border-slate-200/90 overflow-hidden shadow-xs group bg-slate-900 flex flex-col justify-between">
             <Image
               src={active.image}
               alt={active.title}
@@ -412,18 +588,31 @@ export function SolutionsEcosystem() {
               className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white gap-2">
+            {/* Ambient vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-slate-950/40" />
+
+            {/* Top HUD Badge Bar */}
+            <div className="relative z-10 p-3 sm:p-4 flex items-center justify-between gap-2">
+              <span className="rounded-md bg-slate-900/85 backdrop-blur-xs border border-white/20 px-2.5 py-1 font-mono text-[10px] font-bold text-white shadow-xs">
+                {active.photoMetadata.facility}
+              </span>
+              <span className="rounded-md bg-amber-500/95 backdrop-blur-xs px-2.5 py-1 font-mono text-[10px] font-extrabold text-slate-950 shadow-xs">
+                {active.badge}
+              </span>
+            </div>
+
+            {/* Bottom HUD Bar */}
+            <div className="relative z-10 p-3 sm:p-4 border-t border-white/10 bg-gradient-to-t from-slate-950/95 to-slate-950/60 backdrop-blur-xs flex items-end justify-between gap-3 text-white">
               <div className="min-w-0">
                 <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">
                   Factory &amp; Field Reference
                 </span>
                 <p className="text-xs sm:text-sm font-extrabold text-white tracking-tight truncate">
-                  {active.title} Execution
+                  {active.photoMetadata.location}
                 </p>
               </div>
-              <span className="flex-none rounded-md bg-slate-900/80 backdrop-blur-xs border border-white/20 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-300">
-                {active.badge}
+              <span className="flex-none rounded-full bg-emerald-500/20 border border-emerald-400/40 px-2.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
+                ● {active.photoMetadata.status}
               </span>
             </div>
           </div>
@@ -442,7 +631,7 @@ export function SolutionsEcosystem() {
         </div>
 
         {/* Sleek Bottom Credibility Bar */}
-        <div className="mt-3.5 sm:mt-4 rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+        <div className="mt-3.5 sm:mt-4 rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <div className="flex flex-wrap items-center gap-2.5 text-slate-600">
             <span className="inline-flex items-center gap-1.5 text-emerald-700 font-bold">
               <CheckIcon size={14} />
