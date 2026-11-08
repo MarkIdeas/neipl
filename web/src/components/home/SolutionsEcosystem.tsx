@@ -20,66 +20,110 @@ import {
 } from "@/components/icons";
 
 interface ProofEnrichment {
+  detailedScope: string;
   impact: string;
   signatory: string;
+  audit: string;
 }
 
 const PROOF_ENRICHMENTS: Record<number, ProofEnrichment> = {
   0: {
-    impact: "Multi-axis 375kW VFD line synchronization with ~18% energy savings",
+    detailedScope:
+      "Turnkey engineering, panel fabrication, cabling, and field commissioning of multi-axis Yaskawa GA700/A1000 AC variable frequency drives for high-capacity continuous fiber cement lines.",
+    impact: "Multi-axis 375kW drive synchronization achieved ~18% net energy reduction with zero line tension trips.",
     signatory: "General Manager (Works) · Visaka Industries Ltd",
+    audit: "Witnessed Multi-Axis FAT",
   },
   1: {
-    impact: "24/7 boiler telemetry & zero unplanned trips under continuous thermal duty",
-    signatory: "Superintending Engineer (Generation) · MSPGCL",
+    detailedScope:
+      "Erection, cabling, termination, and live statutory commissioning of thermal power station boiler electrical control panels, RTUs, and distributed SCADA telemetry networks.",
+    impact: "24/7 continuous boiler telemetry maintained with zero unplanned trips under peak 500MW thermal duty.",
+    signatory: "Superintending Engineer (Generation) · Koradi Thermal Station",
+    audit: "State Power PSU Clearance",
   },
   2: {
-    impact: "Certified partner authorization for precision field loop integration",
+    detailedScope:
+      "Official OEM channel authorization and certified system integration agreement covering sales, calibration, loop engineering, and commissioning of Yokogawa field process instrumentation.",
+    impact: "Factory-certified partner status authorizing precision calibration for mission-critical hazardous loops.",
     signatory: "Head of Commercial & Strategic Alliances · Yokogawa India",
+    audit: "Tier-1 OEM Channel Authorization",
   },
   3: {
-    impact: "Withstood harsh clinker dust environment with zero busbar thermal hot spots",
-    signatory: "Vice President (Technical) · Vasavadatta Cement",
+    detailedScope:
+      "Turnkey delivery, testing, and commissioning of heavy-duty LT switchboards, clinker crusher motor control centers (MCC), and automated kiln automation panels.",
+    impact: "Surpassed Form 4b 6000A short-circuit withstand in continuous clinker dust with zero thermal hotspots.",
+    signatory: "Vice President (Technical) · Vasavadatta Cement (Aditya Birla)",
+    audit: "Continuous Process Witnessed FAT",
   },
   4: {
-    impact: "Maintained 0.99 power factor across all operating cycles, eliminating penalties",
-    signatory: "Executive Engineer (City Water Supply) · Kolhapur Municipal Corp",
+    detailedScope:
+      "Execution of automated municipal raw water intake pumping station electricals, APFC capacitor bank panels, multi-pump cascade controllers, and optical fiber telemetry.",
+    impact: "Maintained sustained 0.99 power factor across all civic pumping shifts, eliminating lakhs in utility penalty surcharges.",
+    signatory: "Executive Engineer · City Water Supply Division, KMC",
+    audit: "Civic Infrastructure Site Clearance",
   },
   5: {
-    impact: "Automated dynamic load simulation for 25kV diesel traction alternators",
-    signatory: "Divisional Electrical Engineer (G) · S.E.C. Railway Raipur",
+    detailedScope:
+      "Turnkey design, fabrication, and PLC automation of locomotive traction alternator and rectifier regulator dynamic load testing dynamometer bench rig for electric loco sheds.",
+    impact: "Automated high-load dynamic dyno testing for 25kV diesel and electric locomotive traction units.",
+    signatory: "Divisional Electrical Engineer (General) · S.E.C. Railway Raipur",
+    audit: "Indian Railways RDSO Standard",
   },
   6: {
-    impact: "Sub-millimeter positioning drive control for 50-tonne rolling-stock traverser",
+    detailedScope:
+      "Precision variable frequency motion control, VVVF drives, and synchronized multi-motor positioning panels for 50-tonne heavy rolling-stock carriage traversers.",
+    impact: "Micro-millimeter rail track alignment under full 50-tonne carriage load with zero transfer backlash.",
     signatory: "Senior Divisional Mechanical Engineer · Carriage Repair Works",
+    audit: "Heavy Rolling Stock Precision Test",
   },
   7: {
-    impact: "Precision solvent extraction flow monitoring preventing volatile vapor loss",
+    detailedScope:
+      "Continuous solvent extraction plant automation, explosion-proof hazardous area field transmitter networks, and central motor control center (MCC) switchboards.",
+    impact: "Precision vapor flow telemetry and closed-loop temperature control preventing flammable hexane loss.",
     signatory: "Senior Plant Manager & Technical Controller · Vaishali Agro Soya",
+    audit: "Hazardous Zone 1 & 2 Safety Clearance",
   },
   8: {
-    impact: "Continuous heavy fluid transfer pumping with automatic pressure compensation",
-    signatory: "Director of Plant Operations · Narayan Agro Oils Udgir",
+    detailedScope:
+      "Turnkey electrical infrastructure, high-viscosity fluid pumping motor control centers, APFC banks, and automated boiler feed water pumping panels at Udgir refinery.",
+    impact: "Continuous 24/7 fluid transfer pumping with automatic pressure compensation and zero cavitation.",
+    signatory: "Director of Plant Operations · Narayan Agro Oils Udgir Complex",
+    audit: "Turnkey Industrial Handover Sign-Off",
   },
   9: {
-    impact: "End-to-end synchronized conveyance automation with zero line jam downtime",
-    signatory: "Chief Project Engineer · Turnkey Projects Division",
+    detailedScope:
+      "End-to-end electrical distribution, automated conveyance lines, motor control centers, and synchronized packaging workcell control infrastructure.",
+    impact: "100% automated conveyance synchronization with zero line jam downtime during continuous packaging.",
+    signatory: "Chief Project Engineer · Turnkey Projects Infrastructure Division",
+    audit: "Multi-Station Commissioning Audit",
   },
   10: {
-    impact: "Export-grade tropicalized CPRI switchgear meeting international utilities code",
-    signatory: "Director of Engineering Works · ARM Limited, Kenya",
+    detailedScope:
+      "Export-grade custom LT power switchboards, 415V motor control centers, and tropicalized electrical distribution assemblies for overseas cement and mineral operations.",
+    impact: "Export-grade tropicalized CPRI switchgear fully compliant with international East African utility codes.",
+    signatory: "Director of Engineering Works · Athi River Mining Limited, Kenya",
+    audit: "Overseas Export Clearance",
   },
   11: {
-    impact: "Harmonic distortion mitigated to <3% THD with active multi-zone filtration",
-    signatory: "Managing Director & Chief Engineer · Vishwa Engineering",
+    detailedScope:
+      "Turnkey design, manufacturing, and FAT simulation of PLC automation control panels, harmonic suppression active filter banks, and secondary distribution switchboards.",
+    impact: "Mitigated plant-wide total harmonic distortion (THD-I) to <3% with automated multi-zone correction.",
+    signatory: "Managing Director & Chief Engineer · Vishwa Engineering Excellence",
+    audit: "Class-A Licensed Electrical Installation",
   },
   12: {
-    impact: "5+ years continuous vector drive performance on high-torque expeller mills",
+    detailedScope:
+      "Turnkey supply, high-torque vector VFD integration, dynamic motor control panels, and multi-year preventive electrical maintenance engineering.",
+    impact: "Over 5 consecutive years of continuous, zero-breakdown vector drive duty on severe cyclic expeller loads.",
     signatory: "Managing Partner · Ganesh Agro Industries",
+    audit: "Multi-Year Commercial Operational Sign-Off",
   },
   13: {
-    impact: "Zero-blackout electrical protection & RCCB compliance for divisional HQ",
-    signatory: "Senior Divisional Electrical Engineer · South Central Railway",
+    detailedScope:
+      "Comprehensive divisional headquarters electrical system maintenance, residual current circuit breaker (RCCB) modernization, and emergency switchgear operations.",
+    impact: "Zero-blackout electrical continuity and 100% statutory RCCB trip safety across divisional headquarters.",
+    signatory: "Senior Divisional Electrical Engineer · South Central Railway, Secunderabad",
+    audit: "Divisional Railway Safety Audit",
   },
 };
 
@@ -114,9 +158,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Safety Rating", value: "Fail-Safe SIL-2 / SIL-3 Redundancy" },
     ],
     bullets: [
-      "Turnkey PLC & RTU control panels with witnessed FAT",
-      "Plant-wide SCADA telemetry with historical event logging",
-      "Distributed fail-safe I/O architectures with optical loops",
+      "Turnkey PLC & RTU control panels with witnessed FAT simulation",
+      "Plant-wide SCADA telemetry with real-time historical event logging",
+      "Distributed fail-safe I/O architectures with optical fiber loops",
+      "Field sensor instrumentation loops and automated ESD emergency shutoff",
     ],
     icon: GearIcon,
     photoMetadata: {
@@ -141,9 +186,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Protection", value: "Cat 4 Safety PLC & Light Fencing" },
     ],
     bullets: [
-      "Robotic arc welding cells with dual servo positioners",
-      "High-speed palletization, depalletizing & packaging",
-      "Automated CNC machine tending with vision-guided infeed",
+      "Robotic arc welding cells with dual synchronized servo positioners",
+      "High-speed carton palletization, depalletizing & stretch wrapping",
+      "Automated CNC machine tending with vision-guided part infeed",
+      "Turnkey end-of-arm tooling (EOAT) design and offline path simulation",
     ],
     icon: RobotIcon,
     photoMetadata: {
@@ -168,9 +214,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Busbar Copper", value: "99.9% Electrolytic ETP Grade" },
     ],
     bullets: [
-      "Form 4b Drawout Motor Control Centers (MCC)",
-      "High-capacity 6000A Power Control Centers (PCC)",
-      "Microprocessor APFC capacitor banks for 0.99 PF",
+      "Form 4b Drawout Motor Control Centers (MCC) with isolated tiers",
+      "High-capacity 6000A Power Control Centers (PCC) with ACB couplers",
+      "Microprocessor APFC capacitor banks maintaining sustained 0.99 PF",
+      "A-Grade licensed fabrication with full-load 2.5kV FAT dielectric testing",
     ],
     icon: PlugIcon,
     photoMetadata: {
@@ -195,9 +242,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Harmonics", value: "Active Filters (<5% IEEE 519 THD)" },
     ],
     bullets: [
-      "Multi-drive speed synchronization for rolling mills",
+      "Multi-drive speed synchronization for rolling mills & conveyors",
       "Overhead crane VVVF anti-sway motion control panels",
-      "Component-level VFD diagnostic & repair lab in Pune",
+      "Component-level VFD diagnostic & repair lab support in Pune",
+      "Comprehensive harmonic distortion audits and active line filtering",
     ],
     icon: BoltIcon,
     photoMetadata: {
@@ -222,9 +270,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Hazardous Area", value: "ATEX / PESO Flameproof Zone 1 & 2" },
     ],
     bullets: [
-      "Differential pressure, flow & level transmitter loops",
-      "Electromagnetic and vortex utility flow metering",
-      "Pre-commissioning loop calibration with certificates",
+      "Differential pressure, mass flow & level transmitter loops",
+      "Electromagnetic and vortex utility process pipeline metering",
+      "Pre-commissioning loop calibration with NABL-traceable certificates",
+      "Explosion-proof hazardous area barrier wiring and intrinsic safety",
     ],
     icon: ChartIcon,
     photoMetadata: {
@@ -249,9 +298,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Telemetry", value: "GSM / Optical Fiber Reservoir RTUs" },
     ],
     bullets: [
-      "Automated multi-pump VVVF panels with soft start",
-      "APFC power factor correction banks (zero penalty)",
-      "Reservoir level, pressure & cavitation safety interlocks",
+      "Automated multi-pump VVVF panels with soft-start bypass",
+      "APFC power factor correction banks (zero reactive utility penalty)",
+      "Reservoir level, water pressure & cavitation anti-trip safety interlocks",
+      "Remote booster pump station telemetry over GSM and optical backbones",
     ],
     icon: CpuChipIcon,
     photoMetadata: {
@@ -276,9 +326,10 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       { label: "Spares Depots", value: "Dual Facilities: Hyderabad & Pune" },
     ],
     bullets: [
-      "Locomotive dyno test bench rigs for traction alternators",
-      "Thermography, busbar torqueing & Megger insulation audits",
-      "24/7 emergency dispatch with mobile diagnostic kits",
+      "Locomotive dyno test bench rigs for 25kV traction alternators",
+      "Panel thermography, busbar torqueing & Megger insulation resistance audits",
+      "24/7 emergency dispatch team with mobile diagnostic test sets",
+      "Dedicated spare VFD and switchgear inventory reserves in Pune & Hyderabad",
     ],
     icon: WrenchShieldIcon,
     photoMetadata: {
@@ -308,13 +359,18 @@ function ProofCard({
       <div>
         {/* Certificate Top Metadata Row */}
         <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-200/80">
-          <div className="flex items-center gap-2 min-w-0">
+          <div className="flex items-center gap-1.5 min-w-0">
             <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 font-mono text-[10px] font-extrabold text-amber-900 flex-none">
               {certCode}
             </span>
             {cert.sector && (
               <span className="rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[10px] font-semibold text-slate-700 truncate">
                 {cert.sector}
+              </span>
+            )}
+            {enrichment?.audit && (
+              <span className="hidden sm:inline-block rounded-full bg-slate-50 border border-slate-200 px-2 py-0.5 font-mono text-[9.5px] font-medium text-slate-600 truncate">
+                {enrichment.audit}
               </span>
             )}
           </div>
@@ -327,18 +383,18 @@ function ProofCard({
         {/* Client Brand & Handover Document */}
         <div className="mt-3 flex items-center gap-3">
           {cert.logo ? (
-            <div className="flex h-11 w-18 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1 shadow-2xs">
+            <div className="flex h-12 w-20 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1.5 shadow-2xs">
               <Image
                 src={cert.logo}
                 alt={`${cert.client} logo`}
-                width={64}
-                height={32}
-                className="max-h-8 w-auto object-contain"
+                width={70}
+                height={35}
+                className="max-h-9 w-auto object-contain"
               />
             </div>
           ) : (
-            <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
-              <BuildingIcon size={18} />
+            <div className="flex h-12 w-12 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
+              <BuildingIcon size={20} />
             </div>
           )}
           <div className="min-w-0 flex-1">
@@ -351,17 +407,19 @@ function ProofCard({
           </div>
         </div>
 
-        {/* Contract Handover Scope */}
+        {/* Full Turnkey Handover Scope */}
         <div className="mt-2.5 rounded-lg border border-slate-200/80 bg-slate-50 p-2.5 text-xs leading-relaxed text-slate-700">
           <span className="font-mono text-[9.5px] font-extrabold uppercase tracking-wider text-slate-500 block mb-0.5">
             Verified Handover Scope:
           </span>
-          <p className="font-medium text-slate-800">{cert.scope}</p>
+          <p className="font-medium text-slate-800 leading-normal">
+            {enrichment?.detailedScope || cert.scope}
+          </p>
         </div>
 
         {/* Verified Impact Callout */}
         {enrichment && (
-          <div className="mt-2 rounded-lg border border-emerald-200/70 bg-emerald-50/70 p-2 text-xs leading-snug text-emerald-900 flex items-start gap-1.5">
+          <div className="mt-2 rounded-lg border border-emerald-200/70 bg-emerald-50/70 p-2.5 text-xs leading-snug text-emerald-900 flex items-start gap-2">
             <span className="text-emerald-700 flex-none mt-0.5 font-bold">✓</span>
             <div>
               <span className="font-bold text-emerald-950">Engineering Outcome: </span>
@@ -369,6 +427,16 @@ function ProofCard({
             </div>
           </div>
         )}
+
+        {/* Handover Specifications Strip */}
+        <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[10px] text-slate-500">
+          <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
+            ● 100% Commercial Handover
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
+            ● Class-A Licensed Works
+          </span>
+        </div>
       </div>
 
       {/* Signatory Authority & Action Footer */}
@@ -433,9 +501,9 @@ export function SolutionsEcosystem() {
       onMouseLeave={() => setIsPaused(false)}
       className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-between bg-white py-6 sm:py-8 text-slate-800 border-b border-slate-200/90 overflow-hidden"
     >
-      <Container>
+      <Container className="flex-1 flex flex-col justify-between gap-3.5 sm:gap-4">
         {/* Compact Executive Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-3 sm:mb-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
             <Eyebrow>Capabilities &amp; Verified Proof</Eyebrow>
             <SectionHeading tone="dark" className="mt-1 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">
@@ -458,7 +526,7 @@ export function SolutionsEcosystem() {
         <div
           role="tablist"
           aria-label="Industrial Solutions Selector"
-          className="flex overflow-x-auto no-scrollbar gap-1.5 sm:gap-2 pb-1 mb-3.5 sm:mb-4"
+          className="flex overflow-x-auto no-scrollbar gap-1.5 sm:gap-2 pb-1"
         >
           {ALL_SOLUTIONS.map((s, idx) => {
             const isActive = idx === activeIdx;
@@ -497,7 +565,7 @@ export function SolutionsEcosystem() {
         </div>
 
         {/* 2x2 Matrix Feature Stage: Row 1 (Specs + Industrial Photo) | Row 2 (Verified Proof 1 + Verified Proof 2) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch flex-1">
           {/* Quadrant 1 (Top-Left): Capability Brief & Engineered Specs Matrix */}
           <div className="flex flex-col justify-between rounded-xl border border-slate-200/90 bg-slate-50/70 p-4 sm:p-5 shadow-xs">
             <div>
@@ -539,16 +607,16 @@ export function SolutionsEcosystem() {
                 ))}
               </div>
 
-              {/* Engineered Deliverables Checklist */}
+              {/* Engineered Deliverables Checklist (4 Inclusions) */}
               <div className="mt-2.5 pt-2 border-t border-slate-200/70">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block mb-1">
                   Engineered Deliverables &amp; Inclusions
                 </span>
-                <div className="space-y-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                   {active.bullets.map((bullet) => (
                     <div
                       key={bullet}
-                      className="flex items-center gap-2 rounded-md border border-slate-200/60 bg-white/80 px-2 py-1 text-[11px] font-medium text-slate-800"
+                      className="flex items-center gap-1.5 rounded-md border border-slate-200/60 bg-white/80 px-2 py-1 text-[11px] font-medium text-slate-800"
                     >
                       <span className="text-emerald-600 flex-none">
                         <CheckIcon size={12} />
@@ -579,7 +647,7 @@ export function SolutionsEcosystem() {
           </div>
 
           {/* Quadrant 2 (Top-Right): High-Definition Industrial Photo & Telemetry HUD */}
-          <div className="relative min-h-[260px] sm:min-h-[280px] lg:min-h-[300px] rounded-xl border border-slate-200/90 overflow-hidden shadow-xs group bg-slate-900 flex flex-col justify-between">
+          <div className="relative min-h-[280px] sm:min-h-[300px] lg:min-h-[320px] rounded-xl border border-slate-200/90 overflow-hidden shadow-xs group bg-slate-900 flex flex-col justify-between">
             <Image
               src={active.image}
               alt={active.title}
@@ -631,7 +699,7 @@ export function SolutionsEcosystem() {
         </div>
 
         {/* Sleek Bottom Credibility Bar */}
-        <div className="mt-3.5 sm:mt-4 rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+        <div className="rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <div className="flex flex-wrap items-center gap-2.5 text-slate-600">
             <span className="inline-flex items-center gap-1.5 text-emerald-700 font-bold">
               <CheckIcon size={14} />
