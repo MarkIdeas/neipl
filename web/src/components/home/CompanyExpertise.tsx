@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui";
@@ -12,7 +12,6 @@ import {
   ClockIcon,
   WrenchShieldIcon,
   GearIcon,
-  MapPinIcon,
 } from "@/components/icons";
 
 const FAT_PROTOCOLS = [
@@ -22,7 +21,39 @@ const FAT_PROTOCOLS = [
   "Electrolytic ETP Grade Copper Busbar Sizing",
 ] as const;
 
+const HUBS = [
+  {
+    id: "hyderabad",
+    city: "Hyderabad, Telangana",
+    name: "Jeedimetla Works HQ · Hyderabad",
+    tag: "100% FAT Tested",
+    address: "Plot No. 78/A/2 & 3, Phase VI, Industrial Park",
+    desc: "In-house CNC sheet-metal fabrication, copper busbar shaping, robotic cell integration & 2.5kV HV testing bay.",
+    image: "/images/panel_indian.jpg",
+    alt: "CPRI Certified Switchgear Assembly Works in Jeedimetla, Hyderabad",
+    facilityBadge: "Central Switchgear Works · Hyderabad",
+    faultBadge: "6000A Fault Rated",
+    sealText: "ISO & CPRI Compliant Works",
+  },
+  {
+    id: "pune",
+    city: "Pune, Maharashtra",
+    name: "Western Region Hub · Pune",
+    tag: "Branch Office & Lab",
+    address: "J135, MIDC Bhosari, Pune 411 026",
+    desc: "Component-level AC vector drive repair laboratory, motion demonstration cell & regional robotics spares depot.",
+    image: "/images/gallery_drives_ga700.jpg",
+    alt: "Western Region Robotics and VFD Diagnostic Hub in Bhosari, Pune",
+    facilityBadge: "Western Region Tech Center · Pune",
+    faultBadge: "Yaskawa Authorized Lab",
+    sealText: "24/7 AMC Dispatch Depot",
+  },
+] as const;
+
 export function CompanyExpertise() {
+  const [activeHubIdx, setActiveHubIdx] = useState<number>(0);
+  const activeHub = HUBS[activeHubIdx];
+
   const { display: cpriDisplay, ref: cpriRef } = useCountUp(6000, 1600, "A");
   const { display: yearsDisplay, ref: yearsRef } = useCountUp(20, 1400, "+");
   const { display: oemDisplay, ref: oemRef } = useCountUp(6, 1200, " Tier-1");
@@ -207,19 +238,21 @@ export function CompanyExpertise() {
             </div>
           </div>
 
-          {/* Right Column: Composite Visual Showcase & Dual Infrastructure Hubs (Order 2 on Mobile, Order 2 on Desktop) */}
+          {/* Right Column: Composite Visual Showcase & Dual Infrastructure Hubs Switcher (Order 2 on Mobile, Order 2 on Desktop) */}
           <div
             data-testid="engineering-visual-showcase"
             className="order-2 lg:order-2 flex flex-col rounded-2xl border border-white/15 bg-slate-950 shadow-xl overflow-hidden"
           >
-            {/* Primary Facility Widescreen 16:9 Image */}
+            {/* Active Facility Widescreen 16:9 Image */}
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900 flex-none">
               <Image
-                src="/images/panel_indian.jpg"
-                alt="CPRI Certified Panel Assembly Facility in Hyderabad"
+                key={activeHub.image}
+                src={activeHub.image}
+                alt={activeHub.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                priority
               />
               <div
                 aria-hidden="true"
@@ -230,58 +263,79 @@ export function CompanyExpertise() {
               <div className="absolute top-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-950/85 backdrop-blur-md px-2.5 py-0.5 text-[10.5px] font-bold text-white border border-white/15">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>ISO &amp; CPRI Compliant Works</span>
+                  <span>{activeHub.sealText}</span>
                 </span>
                 <span className="rounded-md bg-amber-500 px-2.5 py-0.5 font-mono text-[10.5px] font-extrabold uppercase text-slate-950 shadow-sm">
-                  6000A Fault Rated
+                  {activeHub.faultBadge}
                 </span>
+              </div>
+
+              {/* Bottom Caption Bar */}
+              <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white text-[11px] font-mono">
+                <span className="text-amber-300 font-bold">{activeHub.facilityBadge}</span>
+                <span className="text-slate-300 text-[10px]">Click Hubs Below to Switch</span>
               </div>
             </div>
 
-            {/* Dual Manufacturing & Engineering Hubs Console */}
-            <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-slate-950 border-t border-white/10">
-              {/* Hub 1: Hyderabad HQ */}
-              <div className="flex items-start gap-3">
-                <div className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-amber-500 text-slate-950 shadow-sm">
-                  <CheckIcon size={18} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h5 className="text-xs sm:text-sm font-extrabold text-white truncate">
-                      Jeedimetla Works HQ · Hyderabad
-                    </h5>
-                    <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[9.5px] font-bold text-amber-400">
-                      100% FAT Tested
-                    </span>
-                  </div>
-                  <p className="mt-0.5 text-[11.5px] leading-relaxed text-slate-300">
-                    Plot No. 78/A/2 &amp; 3, Phase VI, Industrial Park — CNC sheet-metal fabrication, copper busbar shaping, robotic cell integration &amp; 2.5kV HV testing bay.
-                  </p>
-                </div>
-              </div>
-
-              {/* Architectural Divider */}
-              <div className="border-t border-white/10" />
-
-              {/* Hub 2: Pune Branch */}
-              <div className="flex items-start gap-3">
-                <div className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/10 text-amber-400 border border-white/10">
-                  <MapPinIcon size={16} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h5 className="text-xs sm:text-sm font-bold text-white truncate">
-                      Western Region Hub · Pune
-                    </h5>
-                    <span className="rounded bg-white/10 px-2 py-0.5 text-[9.5px] font-semibold text-slate-300">
-                      Branch Office
-                    </span>
-                  </div>
-                  <p className="mt-0.5 text-[11.5px] text-slate-400">
-                    J135, MIDC Bhosari, Pune 411 026 — Supporting Maharashtra industrial corridors, component VFD diagnostics &amp; 24/7 AMC dispatch.
-                  </p>
-                </div>
-              </div>
+            {/* Dual Manufacturing & Engineering Hubs Interactive Console */}
+            <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between gap-2 bg-slate-950 border-t border-white/10">
+              {HUBS.map((hub, idx) => {
+                const isActive = idx === activeHubIdx;
+                return (
+                  <button
+                    key={hub.id}
+                    type="button"
+                    onClick={() => setActiveHubIdx(idx)}
+                    onMouseEnter={() => setActiveHubIdx(idx)}
+                    className={`w-full text-left rounded-xl p-2.5 sm:p-3 transition-all duration-200 border cursor-pointer ${
+                      isActive
+                        ? "border-amber-500/80 bg-white/10 shadow-xs"
+                        : "border-white/5 bg-white/5 hover:border-white/20 hover:bg-white/8"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* Facility Thumbnail Preview */}
+                      <div className="relative h-11 w-11 flex-none rounded-lg overflow-hidden border border-white/15 bg-slate-900 shadow-sm">
+                        <Image
+                          src={hub.image}
+                          alt={hub.alt}
+                          fill
+                          sizes="44px"
+                          className="object-cover object-center"
+                        />
+                        <div
+                          className={`absolute inset-0 transition-opacity ${
+                            isActive ? "bg-transparent ring-2 ring-amber-400 ring-inset" : "bg-black/35"
+                          }`}
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center justify-between gap-1">
+                          <h5
+                            className={`text-xs sm:text-[13px] font-extrabold truncate ${
+                              isActive ? "text-amber-400" : "text-white"
+                            }`}
+                          >
+                            {hub.name}
+                          </h5>
+                          <span
+                            className={`rounded px-1.5 py-0.5 text-[9px] font-bold ${
+                              isActive
+                                ? "bg-amber-500 text-slate-950"
+                                : "bg-white/10 text-slate-300"
+                            }`}
+                          >
+                            {hub.tag}
+                          </span>
+                        </div>
+                        <p className="mt-0.5 text-[11px] leading-relaxed text-slate-300 line-clamp-2">
+                          {hub.address} — {hub.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
