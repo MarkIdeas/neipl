@@ -125,12 +125,9 @@ describe("Desktop (1440px) & Mobile (375px) Responsive Rendering Suite", () => {
         expect(card.querySelector("svg")).not.toBeNull();
       });
 
-      // Verify both Hyderabad HQ and Pune Branch are rendered inside the showcase
+      // Verify Hyderabad HQ is rendered inside the showcase
       expect(
         within(visualShowcase).getByText(/Jeedimetla Works HQ · Hyderabad/i)
-      ).toBeInTheDocument();
-      expect(
-        within(visualShowcase).getByText(/Western Region Hub · Pune/i)
       ).toBeInTheDocument();
 
       assertImagesAndLinksValid(container);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui";
@@ -21,39 +21,7 @@ const FAT_PROTOCOLS = [
   "Electrolytic ETP Grade Copper Busbar Sizing",
 ] as const;
 
-const HUBS = [
-  {
-    id: "hyderabad",
-    city: "Hyderabad, Telangana",
-    name: "Jeedimetla Works HQ · Hyderabad",
-    tag: "100% FAT Tested",
-    address: "Plot No. 78/A/2 & 3, Phase VI, Industrial Park",
-    desc: "In-house CNC sheet-metal fabrication, copper busbar shaping, robotic cell integration & 2.5kV HV testing bay.",
-    image: "/images/panel_indian.jpg",
-    alt: "CPRI Certified Switchgear Assembly Works in Jeedimetla, Hyderabad",
-    facilityBadge: "Central Switchgear Works · Hyderabad",
-    faultBadge: "6000A Fault Rated",
-    sealText: "ISO & CPRI Compliant Works",
-  },
-  {
-    id: "pune",
-    city: "Pune, Maharashtra",
-    name: "Western Region Hub · Pune",
-    tag: "Branch Office & Lab",
-    address: "J135, MIDC Bhosari, Pune 411 026",
-    desc: "Component-level AC vector drive repair laboratory, motion demonstration cell & regional robotics spares depot.",
-    image: "/images/gallery_drives_ga700.jpg",
-    alt: "Western Region Robotics and VFD Diagnostic Hub in Bhosari, Pune",
-    facilityBadge: "Western Region Tech Center · Pune",
-    faultBadge: "Yaskawa Authorized Lab",
-    sealText: "24/7 AMC Dispatch Depot",
-  },
-] as const;
-
 export function CompanyExpertise() {
-  const [activeHubIdx, setActiveHubIdx] = useState<number>(0);
-  const activeHub = HUBS[activeHubIdx];
-
   const { display: cpriDisplay, ref: cpriRef } = useCountUp(6000, 1600, "A");
   const { display: yearsDisplay, ref: yearsRef } = useCountUp(20, 1400, "+");
   const { display: oemDisplay, ref: oemRef } = useCountUp(6, 1200, " Tier-1");
@@ -73,7 +41,7 @@ export function CompanyExpertise() {
               From Jeedimetla Workshop in 2006 to National Infrastructure Scale as NEIPL
             </SectionHeading>
             <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              Founded in 2006 with our Western Region technology center in MIDC Bhosari, Pune, our zero-compromise electrical engineering earned 15 CPRI certificates, 6000A short-circuit ratings, and the trust of Indian Railways and state power utilities.
+              Founded in 2006 in Hyderabad, our zero-compromise electrical engineering earned 15 CPRI certificates, 6000A short-circuit ratings, and the trust of Indian Railways and state power utilities across India.
             </p>
           </div>
           <Link
@@ -85,7 +53,7 @@ export function CompanyExpertise() {
           </Link>
         </div>
 
-        {/* Balanced 50/50 Dual Stage (Left: Technical Authority | Right: Physical Facilities) */}
+        {/* Balanced 50/50 Dual Stage (Left: Technical Authority | Right: Physical Facility) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-stretch flex-1">
           {/* Left Column: 4 Authority Pillars, FAT Protocol & CTAs (Order 3 on Mobile, Order 1 on Desktop) */}
           <div
@@ -238,104 +206,79 @@ export function CompanyExpertise() {
             </div>
           </div>
 
-          {/* Right Column: Composite Visual Showcase & Dual Infrastructure Hubs Switcher (Order 2 on Mobile, Order 2 on Desktop) */}
+          {/* Right Column: Hyderabad HQ Central Works Visual Showcase (Order 2 on Mobile, Order 2 on Desktop) */}
           <div
             data-testid="engineering-visual-showcase"
-            className="order-2 lg:order-2 flex flex-col rounded-2xl border border-white/15 bg-slate-950 shadow-xl overflow-hidden"
+            className="order-2 lg:order-2 relative flex flex-col justify-between rounded-2xl border border-white/15 bg-slate-950 shadow-xl overflow-hidden min-h-[340px] sm:min-h-[420px] lg:min-h-0"
           >
-            {/* Active Facility Widescreen 16:9 Image */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900 flex-none">
-              <Image
-                key={activeHub.image}
-                src={activeHub.image}
-                alt={activeHub.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center transition-transform duration-700 hover:scale-105"
-                priority
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent"
-              />
+            {/* Full-Bleed Photograph of Jeedimetla Works HQ */}
+            <Image
+              src="/images/panel_indian.jpg"
+              alt="CPRI Certified Switchgear Assembly Works in Jeedimetla, Hyderabad"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center transition-transform duration-700 hover:scale-105"
+              priority
+            />
 
-              {/* Top Floating Verification Seals */}
-              <div className="absolute top-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-950/85 backdrop-blur-md px-2.5 py-0.5 text-[10.5px] font-bold text-white border border-white/15">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>{activeHub.sealText}</span>
-                </span>
-                <span className="rounded-md bg-amber-500 px-2.5 py-0.5 font-mono text-[10.5px] font-extrabold uppercase text-slate-950 shadow-sm">
-                  {activeHub.faultBadge}
-                </span>
-              </div>
+            {/* Layered Gradient Vignette for Readability */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-slate-950/20 pointer-events-none"
+            />
 
-              {/* Bottom Caption Bar */}
-              <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white text-[11px] font-mono">
-                <span className="text-amber-300 font-bold">{activeHub.facilityBadge}</span>
-                <span className="text-slate-300 text-[10px]">Click Hubs Below to Switch</span>
-              </div>
+            {/* Top Floating Telemetry Seals */}
+            <div className="relative z-10 p-3.5 sm:p-4 flex flex-wrap items-center justify-between gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-950/85 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-white border border-white/15 shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>ISO 9001:2015 &amp; CPRI Compliant Works</span>
+              </span>
+              <span className="rounded-md bg-amber-500 px-3 py-1 font-mono text-[11px] font-extrabold uppercase text-slate-950 shadow-sm">
+                6000A Fault Rated
+              </span>
             </div>
 
-            {/* Dual Manufacturing & Engineering Hubs Interactive Console */}
-            <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between gap-2 bg-slate-950 border-t border-white/10">
-              {HUBS.map((hub, idx) => {
-                const isActive = idx === activeHubIdx;
-                return (
-                  <button
-                    key={hub.id}
-                    type="button"
-                    onClick={() => setActiveHubIdx(idx)}
-                    onMouseEnter={() => setActiveHubIdx(idx)}
-                    className={`w-full text-left rounded-xl p-2.5 sm:p-3 transition-all duration-200 border cursor-pointer ${
-                      isActive
-                        ? "border-amber-500/80 bg-white/10 shadow-xs"
-                        : "border-white/5 bg-white/5 hover:border-white/20 hover:bg-white/8"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      {/* Facility Thumbnail Preview */}
-                      <div className="relative h-11 w-11 flex-none rounded-lg overflow-hidden border border-white/15 bg-slate-900 shadow-sm">
-                        <Image
-                          src={hub.image}
-                          alt={hub.alt}
-                          fill
-                          sizes="44px"
-                          className="object-cover object-center"
-                        />
-                        <div
-                          className={`absolute inset-0 transition-opacity ${
-                            isActive ? "bg-transparent ring-2 ring-amber-400 ring-inset" : "bg-black/35"
-                          }`}
-                        />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center justify-between gap-1">
-                          <h5
-                            className={`text-xs sm:text-[13px] font-extrabold truncate ${
-                              isActive ? "text-amber-400" : "text-white"
-                            }`}
-                          >
-                            {hub.name}
-                          </h5>
-                          <span
-                            className={`rounded px-1.5 py-0.5 text-[9px] font-bold ${
-                              isActive
-                                ? "bg-amber-500 text-slate-950"
-                                : "bg-white/10 text-slate-300"
-                            }`}
-                          >
-                            {hub.tag}
-                          </span>
-                        </div>
-                        <p className="mt-0.5 text-[11px] leading-relaxed text-slate-300 line-clamp-2">
-                          {hub.address} — {hub.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
+            {/* Bottom HUD Information Overlay */}
+            <div className="relative z-10 p-4 sm:p-5 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
+              <div className="inline-flex items-center gap-2 rounded-md bg-amber-500/20 px-2 py-0.5 text-[10px] font-mono font-extrabold uppercase tracking-wider text-amber-400 border border-amber-500/30 mb-2">
+                Central Switchgear Works · Hyderabad
+              </div>
+
+              <h3 className="text-base sm:text-lg font-extrabold text-white leading-tight">
+                Jeedimetla Works HQ · Hyderabad
+              </h3>
+
+              <p className="mt-1 text-xs text-slate-300 leading-relaxed max-w-xl">
+                Plot No. 78/A/2 &amp; 3, Phase VI, Industrial Park, Jeedimetla, Hyderabad 500 055 — In-house CNC sheet-metal fabrication, high-conductivity copper busbar shaping, robotic cell integration bay &amp; 2.5kV HV dielectric testing laboratory.
+              </p>
+
+              {/* 4 In-house Capabilities Pills */}
+              <div className="mt-3 grid grid-cols-2 gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-2 rounded-lg bg-white/10 backdrop-blur-sm px-2.5 py-1.5 text-[11px] font-semibold text-slate-200 border border-white/10">
+                  <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                    <CheckIcon size={10} />
+                  </span>
+                  <span className="truncate">CNC Sheet-Metal Fabrication</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg bg-white/10 backdrop-blur-sm px-2.5 py-1.5 text-[11px] font-semibold text-slate-200 border border-white/10">
+                  <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                    <CheckIcon size={10} />
+                  </span>
+                  <span className="truncate">Copper Busbar Shaping Bay</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg bg-white/10 backdrop-blur-sm px-2.5 py-1.5 text-[11px] font-semibold text-slate-200 border border-white/10">
+                  <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                    <CheckIcon size={10} />
+                  </span>
+                  <span className="truncate">2.5kV HV Testing Bay</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg bg-white/10 backdrop-blur-sm px-2.5 py-1.5 text-[11px] font-semibold text-slate-200 border border-white/10">
+                  <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                    <CheckIcon size={10} />
+                  </span>
+                  <span className="truncate">100% FAT Prior to Dispatch</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
