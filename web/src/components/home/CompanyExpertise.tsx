@@ -33,9 +33,9 @@ export function CompanyExpertise() {
       aria-label="Two Decades of Engineering Legacy"
       className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-between bg-navy-dark py-6 sm:py-8 border-y border-slate-800 text-white overflow-hidden"
     >
-      <Container className="flex-1 flex flex-col justify-between gap-3.5 sm:gap-4">
-        {/* Full-Width Executive Header (100% Horizontal Symmetry Across Top) */}
-        <div className="order-1 flex flex-col md:flex-row md:items-end justify-between gap-3">
+      <Container className="flex-1 flex flex-col justify-between gap-4 sm:gap-5">
+        {/* Full-Width Executive Header (Top of Section - Natural Source Order) */}
+        <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
             <Eyebrow>Two Decades of Engineering Legacy</Eyebrow>
             <SectionHeading className="mt-1 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white">
@@ -55,11 +55,11 @@ export function CompanyExpertise() {
         </div>
 
         {/* Balanced 50/50 Dual Stage (Left: Technical Authority | Right: Physical Facilities) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch flex-1">
-          {/* 1. Left 6 Columns: 4 Authority Pillars, FAT Protocol & CTAs (Order 3 on Mobile, Order 1 on Desktop) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-stretch flex-1">
+          {/* Left Column: 4 Authority Pillars, FAT Protocol & CTAs (Order 3 on Mobile, Order 1 on Desktop) */}
           <div
             data-testid="engineering-proof-grid"
-            className="order-3 lg:order-1 lg:col-span-6 flex flex-col justify-between space-y-3"
+            className="order-3 lg:order-1 flex flex-col justify-between space-y-3"
           >
             {/* 2x2 Metric Authority Cards */}
             <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
@@ -207,23 +207,23 @@ export function CompanyExpertise() {
             </div>
           </div>
 
-          {/* 2. Right 6 Columns: Composite Visual Showcase & Dual Infrastructure Hubs (Order 2 on Mobile & Desktop) */}
+          {/* Right Column: Composite Visual Showcase & Dual Infrastructure Hubs (Order 2 on Mobile, Order 2 on Desktop) */}
           <div
             data-testid="engineering-visual-showcase"
-            className="order-2 lg:order-2 lg:col-span-6 flex flex-col justify-between rounded-2xl border border-white/15 bg-slate-950 shadow-xl overflow-hidden h-full"
+            className="order-2 lg:order-2 flex flex-col rounded-2xl border border-white/15 bg-slate-950 shadow-xl overflow-hidden"
           >
-            {/* Primary Facility Image */}
-            <div className="relative h-[180px] sm:h-[200px] lg:h-[210px] w-full overflow-hidden bg-slate-900 flex-none">
+            {/* Primary Facility Widescreen 16:9 Image */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900 flex-none">
               <Image
                 src="/images/panel_indian.jpg"
                 alt="CPRI Certified Panel Assembly Facility in Hyderabad"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 hover:scale-105"
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent"
               />
 
               {/* Top Floating Verification Seals */}
@@ -239,7 +239,7 @@ export function CompanyExpertise() {
             </div>
 
             {/* Dual Manufacturing & Engineering Hubs Console */}
-            <div className="p-4 sm:p-5 flex-1 flex flex-col justify-evenly space-y-3 bg-slate-950/95 border-t border-white/10">
+            <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-slate-950 border-t border-white/10">
               {/* Hub 1: Hyderabad HQ */}
               <div className="flex items-start gap-3">
                 <div className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-amber-500 text-slate-950 shadow-sm">
