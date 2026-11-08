@@ -29,7 +29,8 @@ interface SolutionPairItem {
   desc: string;
   bullets: readonly string[];
   icon: React.ComponentType<{ size?: number; className?: string }>;
-  certIndex: number;
+  proof1Index: number;
+  proof2Index: number;
 }
 
 const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
@@ -47,7 +48,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Distributed fail-safe I/O architectures",
     ],
     icon: GearIcon,
-    certIndex: 1, // Mahagenco Work Completion Certificate
+    proof1Index: 1, // Mahagenco Work Completion Certificate (CERT-02)
+    proof2Index: 11, // Vishwa Engineering Excellence (CERT-12)
   },
   {
     num: "02",
@@ -63,7 +65,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Automated machine tending cells",
     ],
     icon: RobotIcon,
-    certIndex: 6, // TPTY Traversers / Heavy Precision Positioning
+    proof1Index: 6, // TPTY Traversers / Railway Workshops (CERT-07)
+    proof2Index: 9, // DCS Limited (CERT-10)
   },
   {
     num: "03",
@@ -79,7 +82,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Heavy-duty MCC & PCC switchboards",
     ],
     icon: PlugIcon,
-    certIndex: 3, // Vasavadatta Cement (Aditya Birla)
+    proof1Index: 3, // Vasavadatta Cement / Aditya Birla (CERT-04)
+    proof2Index: 10, // ARM Limited, Kenya (CERT-11)
   },
   {
     num: "04",
@@ -95,7 +99,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Crane VVVF anti-sway drive systems",
     ],
     icon: BoltIcon,
-    certIndex: 0, // Visaka Industries VFD Performance Certificate
+    proof1Index: 0, // Visaka Industries VFD Performance Certificate (CERT-01)
+    proof2Index: 12, // Ganesh Agro Industries (CERT-13)
   },
   {
     num: "05",
@@ -111,7 +116,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Yokogawa certified loop calibration",
     ],
     icon: ChartIcon,
-    certIndex: 2, // Yokogawa Authorization Letter
+    proof1Index: 2, // Yokogawa India Authorization Letter (CERT-03)
+    proof2Index: 7, // Vaishali Agro Soya Products (CERT-08)
   },
   {
     num: "06",
@@ -127,7 +133,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Reservoir level & telemetry loops",
     ],
     icon: CpuChipIcon,
-    certIndex: 4, // Kolhapur Municipal Corporation (KMC)
+    proof1Index: 4, // Kolhapur Municipal Corporation (CERT-05)
+    proof2Index: 8, // Narayan Agro Oils (CERT-09)
   },
   {
     num: "07",
@@ -143,9 +150,103 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
       "Hyderabad & Pune genuine spares depots",
     ],
     icon: WrenchShieldIcon,
-    certIndex: 5, // S.E.C. Railway Raipur Test Bench
+    proof1Index: 5, // S.E.C. Railway Raipur Dyno Test Bench (CERT-06)
+    proof2Index: 13, // Sanchalan Bhavan / South Central Railway (CERT-14)
   },
 ];
+
+function ProofCard({
+  certIndex,
+  onInspect,
+}: {
+  certIndex: number;
+  onInspect: (idx: number) => void;
+}) {
+  const cert = certificates[certIndex];
+  if (!cert) return null;
+  const certCode = `CERT-${String(certIndex + 1).padStart(2, "0")}`;
+
+  return (
+    <div className="flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-3.5 sm:p-4 shadow-xs">
+      <div>
+        {/* Certificate Top Metadata Row */}
+        <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-200/80">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="rounded-md bg-amber-100 border border-amber-300 px-1.5 py-0.5 font-mono text-[10px] font-extrabold text-amber-900 flex-none">
+              {certCode}
+            </span>
+            {cert.sector && (
+              <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[9.5px] font-semibold text-slate-600 truncate">
+                {cert.sector}
+              </span>
+            )}
+          </div>
+          <span className="flex-none inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[9.5px] font-bold text-emerald-800">
+            <CheckIcon size={10} />
+            <span>Signed Record</span>
+          </span>
+        </div>
+
+        {/* Client Brand & Handover Document */}
+        <div className="mt-2.5 flex items-center gap-2.5">
+          {cert.logo ? (
+            <div className="flex h-10 w-16 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1 shadow-2xs">
+              <Image
+                src={cert.logo}
+                alt={`${cert.client} logo`}
+                width={56}
+                height={28}
+                className="max-h-7 w-auto object-contain"
+              />
+            </div>
+          ) : (
+            <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
+              <BuildingIcon size={16} />
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <h4 className="text-xs sm:text-[13.5px] font-extrabold text-slate-900 leading-tight truncate">
+              {cert.client}
+            </h4>
+            <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-700 truncate">
+              {cert.doc}
+            </p>
+          </div>
+        </div>
+
+        {/* Official Handover Scope */}
+        <div className="mt-2 rounded-lg border border-slate-200/80 bg-slate-50 p-2 text-[11px] leading-snug text-slate-700 line-clamp-2">
+          <span className="font-mono text-[9px] font-extrabold uppercase tracking-wider text-slate-500 block mb-0.5">
+            Scope &amp; Deliverable:
+          </span>
+          {cert.scope}
+        </div>
+      </div>
+
+      {/* Document Action Footer */}
+      <div className="mt-2.5 pt-2 border-t border-slate-200/80 flex items-center justify-between gap-2">
+        <button
+          type="button"
+          onClick={() => onInspect(certIndex)}
+          className="inline-flex items-center gap-1 rounded-lg bg-amber-500 px-2.5 py-1 text-[11px] font-extrabold text-slate-950 shadow-2xs transition-all hover:bg-amber-400 cursor-pointer"
+        >
+          <span>Inspect Signed Scan</span>
+          <ArrowRightIcon size={11} />
+        </button>
+
+        <a
+          href={cert.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open original scan in new tab"
+          className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 transition-colors"
+        >
+          Raw Scan ↗
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export function SolutionsEcosystem() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -164,8 +265,6 @@ export function SolutionsEcosystem() {
 
   const active = ALL_SOLUTIONS[activeIdx];
   const ActiveIcon = active.icon;
-  const activeCert = certificates[active.certIndex] || certificates[0];
-  const certCode = `CERT-${String(active.certIndex + 1).padStart(2, "0")}`;
 
   return (
     <section
@@ -173,23 +272,23 @@ export function SolutionsEcosystem() {
       aria-label="Solutions Ecosystem and Verified Completion Records"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-evenly bg-white py-8 sm:py-12 text-slate-800 border-b border-slate-200/90 overflow-hidden"
+      className="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-evenly bg-white py-6 sm:py-8 text-slate-800 border-b border-slate-200/90 overflow-hidden"
     >
       <Container>
         {/* Compact Executive Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 sm:mb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-3.5 sm:mb-4">
           <div>
             <Eyebrow>Capabilities &amp; Verified Proof</Eyebrow>
             <SectionHeading tone="dark" className="mt-1 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">
               End-to-End Capabilities Backed by Signed Completion Records
             </SectionHeading>
             <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl">
-              Explore our core engineering disciplines, each paired directly with verified PSU and enterprise work completion certificates.
+              Explore our core engineering disciplines, each paired directly with field photos and verified PSU &amp; enterprise work completion certificates.
             </p>
           </div>
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-all hover:border-amber-500 hover:bg-amber-500 hover:text-white shadow-2xs self-start md:self-auto"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-800 transition-all hover:border-amber-500 hover:bg-amber-500 hover:text-white shadow-2xs self-start md:self-auto"
           >
             <span>Inspect All 15 Records in Gallery</span>
             <ArrowRightIcon size={14} />
@@ -200,7 +299,7 @@ export function SolutionsEcosystem() {
         <div
           role="tablist"
           aria-label="Industrial Solutions Selector"
-          className="flex overflow-x-auto no-scrollbar gap-1.5 sm:gap-2 pb-1 mb-5"
+          className="flex overflow-x-auto no-scrollbar gap-1.5 sm:gap-2 pb-1 mb-3.5 sm:mb-4"
         >
           {ALL_SOLUTIONS.map((s, idx) => {
             const isActive = idx === activeIdx;
@@ -219,7 +318,7 @@ export function SolutionsEcosystem() {
                   setActiveIdx(idx);
                   setIsPaused(true);
                 }}
-                className={`flex-none sm:flex-1 relative overflow-hidden inline-flex items-center justify-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
+                className={`flex-none sm:flex-1 relative overflow-hidden inline-flex items-center justify-center gap-1.5 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-amber-500 text-slate-950 shadow-xs ring-1 ring-amber-600/30"
                     : "border border-slate-200 bg-slate-50/90 text-slate-700 hover:border-slate-300 hover:bg-slate-100"
@@ -238,10 +337,10 @@ export function SolutionsEcosystem() {
           })}
         </div>
 
-        {/* Bottom Split Feature Stage: Capability (Left) + Signed Verification Record (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch rounded-2xl border border-slate-200/90 bg-slate-50/70 p-4 sm:p-6 shadow-xs">
-          {/* Left Column: Solution Brief, Specs & Deliverables */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
+        {/* 2x2 Matrix Feature Stage: Row 1 (Specs + Industrial Photo) | Row 2 (Verified Proof 1 + Verified Proof 2) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5 sm:gap-4 items-stretch">
+          {/* Quadrant 1 (Top-Left): Capability Brief & Engineered Specs */}
+          <div className="flex flex-col justify-between rounded-xl border border-slate-200/90 bg-slate-50/70 p-4 sm:p-5 shadow-xs">
             <div>
               {/* Badge & Number */}
               <div className="flex items-center gap-2">
@@ -254,18 +353,18 @@ export function SolutionsEcosystem() {
               </div>
 
               {/* Title */}
-              <h3 className="mt-2 text-lg sm:text-xl lg:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+              <h3 className="mt-2 text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
                 <ActiveIcon size={20} className="text-amber-500 flex-none" />
                 <span>{active.title}</span>
               </h3>
 
               {/* Description */}
-              <p className="mt-2 text-xs sm:text-[13.5px] leading-relaxed text-slate-600">
+              <p className="mt-1.5 text-xs sm:text-[13px] leading-relaxed text-slate-600">
                 {active.desc}
               </p>
 
               {/* Engineered Deliverables Checklist */}
-              <div className="mt-3.5 pt-3 border-t border-slate-200/80">
+              <div className="mt-3 pt-2.5 border-t border-slate-200/80">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block mb-1.5">
                   Engineered Deliverables &amp; Inclusions
                 </span>
@@ -286,7 +385,7 @@ export function SolutionsEcosystem() {
             </div>
 
             {/* Direct Action Links */}
-            <div className="mt-4 pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">
+            <div className="mt-3.5 pt-2.5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">
               <Link
                 href={`/services#${active.anchor}`}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 hover:text-amber-700 transition-colors"
@@ -296,96 +395,54 @@ export function SolutionsEcosystem() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-white transition-all hover:bg-slate-800 shadow-2xs"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-bold text-white transition-all hover:bg-slate-800 shadow-2xs"
               >
                 <span>Request Quotation →</span>
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Verified Signed Certificate & Performance Dossier Card */}
-          <div className="lg:col-span-6 flex flex-col justify-between rounded-xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-xs">
-            <div>
-              {/* Certificate Top Metadata Row */}
-              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-200/80">
-                <div className="flex items-center gap-2">
-                  <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 font-mono text-[10px] font-extrabold text-amber-900">
-                    {certCode}
-                  </span>
-                  {activeCert.sector && (
-                    <span className="rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600">
-                      {activeCert.sector}
-                    </span>
-                  )}
-                </div>
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
-                  <CheckIcon size={10} />
-                  <span>Signed &amp; Sealed Record</span>
+          {/* Quadrant 2 (Top-Right): High-Definition Industrial Photo */}
+          <div className="relative min-h-[200px] sm:min-h-[220px] rounded-xl border border-slate-200/90 overflow-hidden shadow-xs group bg-slate-900">
+            <Image
+              src={active.image}
+              alt={active.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
+            <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white gap-2">
+              <div className="min-w-0">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">
+                  Factory &amp; Field Reference
                 </span>
+                <p className="text-xs sm:text-sm font-extrabold text-white tracking-tight truncate">
+                  {active.title} Execution
+                </p>
               </div>
-
-              {/* Client Brand & Handover Document */}
-              <div className="mt-3 flex items-start gap-3">
-                {activeCert.logo ? (
-                  <div className="flex h-11 w-18 flex-none items-center justify-center rounded-lg border border-slate-200 bg-white p-1 shadow-2xs">
-                    <Image
-                      src={activeCert.logo}
-                      alt={`${activeCert.client} logo`}
-                      width={64}
-                      height={32}
-                      className="max-h-8 w-auto object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-amber-300 bg-amber-50 font-mono text-xs font-black text-amber-800">
-                    <BuildingIcon size={18} />
-                  </div>
-                )}
-                <div className="min-w-0 flex-1">
-                  <h4 className="text-sm sm:text-[15px] font-extrabold text-slate-900 leading-tight truncate">
-                    {activeCert.client}
-                  </h4>
-                  <p className="mt-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-700 truncate">
-                    {activeCert.doc}
-                  </p>
-                </div>
-              </div>
-
-              {/* Official Handover Scope */}
-              <div className="mt-2.5 rounded-lg border border-slate-200/80 bg-slate-50 p-2.5 text-xs leading-relaxed text-slate-700">
-                <span className="font-mono text-[9.5px] font-extrabold uppercase tracking-wider text-slate-500 block mb-0.5">
-                  Handover Scope &amp; Deliverable:
-                </span>
-                {activeCert.scope}
-              </div>
-            </div>
-
-            {/* Document Action Footer */}
-            <div className="mt-3.5 pt-2.5 border-t border-slate-200/80 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={() => setLightboxCertIndex(active.certIndex)}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-extrabold text-slate-950 shadow-2xs transition-all hover:bg-amber-400 cursor-pointer"
-              >
-                <span>Inspect Signed Scan</span>
-                <ArrowRightIcon size={12} />
-              </button>
-
-              <a
-                href={activeCert.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Open original scan in new tab"
-                className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 transition-colors"
-              >
-                Raw Document Scan ↗
-              </a>
+              <span className="flex-none rounded-md bg-slate-900/80 backdrop-blur-xs border border-white/20 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-300">
+                {active.badge}
+              </span>
             </div>
           </div>
+
+          {/* Quadrant 3 (Bottom-Left): Verified Proof #1 Card */}
+          <ProofCard
+            certIndex={active.proof1Index}
+            onInspect={setLightboxCertIndex}
+          />
+
+          {/* Quadrant 4 (Bottom-Right): Verified Proof #2 Card */}
+          <ProofCard
+            certIndex={active.proof2Index}
+            onInspect={setLightboxCertIndex}
+          />
         </div>
 
         {/* Sleek Bottom Credibility Bar */}
-        <div className="mt-4 rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+        <div className="mt-3.5 sm:mt-4 rounded-xl border border-slate-200/90 bg-slate-50/80 px-4 py-2 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <div className="flex flex-wrap items-center gap-2.5 text-slate-600">
             <span className="inline-flex items-center gap-1.5 text-emerald-700 font-bold">
               <CheckIcon size={14} />
