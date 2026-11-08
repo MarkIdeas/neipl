@@ -150,7 +150,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     shortLabel: "Automation",
     anchor: "automation",
     badge: "PLC · SCADA · RTU",
-    image: "/images/service_automation.jpg",
+    image: "/images/case_thermal_scada.jpg",
     desc: "Turnkey control system architecture: PLC, SCADA, RTU panels, HMI design, and fail-safe plant commissioning across continuous-process industries.",
     specMatrix: [
       { label: "Platforms", value: "Siemens S7 · Rockwell · Schneider" },
@@ -165,9 +165,9 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: GearIcon,
     photoMetadata: {
-      location: "Mahagenco Koradi Thermal Station",
-      status: "Active Commercial Duty",
-      facility: "Engineered at Jeedimetla Works",
+      location: "Mahagenco Koradi Thermal Power Station CCR",
+      status: "Active SCADA Telemetry",
+      facility: "Central Control Room Bay",
     },
     proof1Index: 1, // Mahagenco Work Completion Certificate (CERT-02)
     proof2Index: 11, // Vishwa Engineering Excellence (CERT-12)
@@ -178,7 +178,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     shortLabel: "Robotics",
     anchor: "robotics",
     badge: "Turnkey Workcells",
-    image: "/images/service_robotics.jpg",
+    image: "/images/gallery_robotics_welding.jpg",
     desc: "Complete robotic workcells engineered for micron-level repeatability, arc welding, palletizing, and hazardous industrial material handling.",
     specMatrix: [
       { label: "Kinematics", value: "6-Axis Articulated (20kg–500kg)" },
@@ -193,7 +193,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: RobotIcon,
     photoMetadata: {
-      location: "Heavy Rolling Stock Carriage Works",
+      location: "6-Axis Heavy Robotic Welding Workcell",
       status: "Automated Workcell Active",
       facility: "Integrated at Bhosari, Pune Hub",
     },
@@ -206,7 +206,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     shortLabel: "CPRI Panels",
     anchor: "panels",
     badge: "CPRI Tested 6000A / 50kA",
-    image: "/images/service_panels.jpg",
+    image: "/images/gallery_panel_lt_switchboard.jpg",
     desc: "CPRI type-tested low-tension switchboards and motor control centers engineered to withstand severe 6000A short circuit faults under IS/IEC 61439.",
     specMatrix: [
       { label: "Fault Rating", value: "CPRI 6000A / 50kA for 1s Withstand" },
@@ -221,8 +221,8 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: PlugIcon,
     photoMetadata: {
-      location: "Central Switchgear Testing Bay",
-      status: "CPRI Tested & Certified",
+      location: "CPRI 6000A / 50kA Form 4b Switchboard",
+      status: "Type-Tested & Certified",
       facility: "Central Switchgear Works, Hyderabad",
     },
     proof1Index: 3, // Vasavadatta Cement / Aditya Birla (CERT-04)
@@ -234,7 +234,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     shortLabel: "Drives & Motion",
     anchor: "drives",
     badge: "Yaskawa Authorized Partner",
-    image: "/images/service_drives.jpg?v=2",
+    image: "/images/gallery_drives_ga700.jpg",
     desc: "Variable frequency, servo, and DC drive engineering. Authorized tier-1 Yaskawa channel partner with factory-certified drive testing lab support.",
     specMatrix: [
       { label: "Hardware", value: "Yaskawa GA700 · A1000 · Sigma-7" },
@@ -249,7 +249,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: BoltIcon,
     photoMetadata: {
-      location: "Continuous Manufacturing Drive Bay",
+      location: "Yaskawa GA700 Multi-Drive Synchronization Line",
       status: "Tier-1 Channel Integration",
       facility: "Bhosari Drive Testing Lab, Pune",
     },
@@ -277,7 +277,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: ChartIcon,
     photoMetadata: {
-      location: "Continuous Petrochemical & Chemical Process",
+      location: "Continuous Process Transmitter & Flow Loop",
       status: "Authorized Channel Support",
       facility: "Jeedimetla Works, Hyderabad",
     },
@@ -290,7 +290,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     shortLabel: "Pumping SCADA",
     anchor: "embedded",
     badge: "Municipal Water PSU",
-    image: "/images/service_embedded.jpg",
+    image: "/images/case_water_apfc.jpg",
     desc: "Automated municipal water pumping station control, APFC energy mitigation banks, and distributed reservoir SCADA networks.",
     specMatrix: [
       { label: "Topologies", value: "Cascade Multi-Pump · VVVF Regulated" },
@@ -305,9 +305,9 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: CpuChipIcon,
     photoMetadata: {
-      location: "Civic Water Intake Station / KMC",
+      location: "KMC Municipal Water Intake Pumping Station",
       status: "Uninterrupted Civic Duty",
-      facility: "Hyderabad & Regional Site Engineering",
+      facility: "Kolhapur Civic Pumping Complex",
     },
     proof1Index: 4, // Kolhapur Municipal Corporation (CERT-05)
     proof2Index: 8, // Narayan Agro Oils (CERT-09)
@@ -318,7 +318,7 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     shortLabel: "Railways & AMC",
     anchor: "maintenance",
     badge: "Indian Railways Proven",
-    image: "/images/service_maintenance.jpg?v=2",
+    image: "/images/case_railways_dyno.jpg",
     desc: "Locomotive alternator test bench automation and round-the-clock emergency AMC contracts backed by dedicated spares depots in Hyderabad & Pune.",
     specMatrix: [
       { label: "Rail Capability", value: "Traction Alternator Dyno Test Benches" },
@@ -333,9 +333,9 @@ const ALL_SOLUTIONS: readonly SolutionPairItem[] = [
     ],
     icon: WrenchShieldIcon,
     photoMetadata: {
-      location: "Electric Locomotive Shed & Dyno Bay",
+      location: "S.E.C. Railway Locomotive Dyno Test Bench",
       status: "Critical Railway Duty",
-      facility: "Hyderabad Central Works & Raipur Site",
+      facility: "Raipur Electric Locomotive Shed",
     },
     proof1Index: 5, // S.E.C. Railway Raipur Dyno Test Bench (CERT-06)
     proof2Index: 13, // Sanchalan Bhavan / South Central Railway (CERT-14)
